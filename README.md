@@ -1,4 +1,4 @@
-#　Stsnd By Me clothing
+#　Stand By Me clothing
 
 ## サイト概要
 ### サイトテーマ
