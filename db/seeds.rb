@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #アドミンのemailとパスワードです。
-　# rails db:seedを実行後使用いただけます。
+#rails db:seedを実行後使用いただけます。
 Admin.create!(
   email: 'admin@admin',
   password: 'admin0'
