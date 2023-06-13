@@ -12,40 +12,40 @@ Rails.application.routes.draw do
 #User側
 
  scope module: :public do
-   
+
    root to:"homes#top"
    get 'about' => 'homes#about'
-   
+
    resources :clothes
-   
+
    resources :users, only: [:show,:edit,:update,]
    get 'users/withdraw' => 'users#withdraw'
    patch 'users/resign' => 'users#resign'
-   
-   resources :storages, only: [:index,:create,:edit,:destroy,:update]
-   
+
+   resources :storages
+
    resources :favorites, only: [:create,:destroy]
-   
+
    resources :comments, only: [:create,:destroy]
-   
+
   end
 
 
 #管理者側
 
   namespace :admin do
-  
+
   root to:"homes#top"
-  
+
   resources :users, only: [:index,:show,:edit,:update]
-  
-  resources :genres, only: [:index,:create,:edit,:update]  
-  
-  resources :colors, only: [:index,:create,:edit,:update] 
-  
+
+  resources :genres, only: [:index,:create,:edit,:update]
+
+  resources :colors, only: [:index,:create,:edit,:update]
+
   resources :clothes,only: [:show]
-  
+
   resources :comments, only: [:destroy]
 
-  end 
+  end
 end

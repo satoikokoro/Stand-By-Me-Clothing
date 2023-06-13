@@ -12,6 +12,7 @@ class Admin::GenresController < ApplicationController
     else
       @genres = Genre.all
       render 'index'
+      #フラッシュメッセージ検討
     end
   end
   

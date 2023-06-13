@@ -1,2 +1,30 @@
-<h1>Public::Storages#index</h1>
-<p>Find me in app/views/public/storages/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 offset-md-1 mt-5">
+      <div>
+        <div class="d-flex align-items-end mb-3">
+          <h2 class="m-0 font-weight-bold">収納先一覧</h2>
+          <span class="ml-3">(全<%= @storages.count %>件)</span>
+        </div>
+        
+        
+    <div class="row mt-3 mb-3 text-center text-xs-center text-sm-center text-md-left">
+      <% @storages.each do |storage|%>
+        <div class="col-xs-10 col-sm-10 col-md-6 col-lg-3">
+            <div class="card w-100 bg-transparent border-0" style="width: 18rem;">
+            <%= link_to storage_path(storage) do%>
+              <p class="img-wrap"><%= image_tag storage.get_storage_image(50, 50), width: "150×150", format: "jpeg", fallback: "no_image.jpeg" %></p>
+            <% end %>
+              <div class="card-body">
+                <p class="item-details item-name card-text font-weight-bold"><%= storage.name %></p>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+        
+      </div>
+    </div>
+  </div>
+  <%= paginate @storages, class:"text-center" %>
+</div>
