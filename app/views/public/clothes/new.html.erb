@@ -1,1 +1,53 @@
-<h1>衣類投稿</h1>
+<div class= "container">
+  <div class= "row">
+    <div class= "col">
+      <h3 style="width: 16%; text-align: center; margin: 15px; background: #7f141a; color:white">衣類登録</h3>
+      <div class="row justify-content-lg-center">
+        <%= form_with model: @cloth, url: clothes_path, local: true do |f| %>
+        <table class="table table-borderless mt-3">
+          <tbody>
+            <tr>
+              <td><%= f.label "衣類画像" %></td>
+              <td><%= f.file_field :image, accept: "image/*",:class => "form-control-Small-file input example" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label "衣類名" %></td>
+              <td><%= f.text_field :name, placeholder: "衣類名" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label "衣類説明" %></td>
+              <td><%= f.text_area :description, placeholder: "ここに説明文を記述します" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label "ジャンル" %></td>
+              <td><%= f.collection_select :genre_id, @genres, :id, :name, {include_blank: "--選択してください--"} %></td>
+            </tr>
+ 
+            <tr>
+              <td><%= f.label "収納先" %></td>
+              <td><%= f.collection_select :storage_id, @storages, :id, :name, {include_blank: "--選択してください--"} %></td>
+            </tr>
+           </tbody>
+          </table>
+            
+            <div class= "row">
+              <div class= "col">
+              <%= f.label "カラー" %>
+              <%= f.collection_check_boxes :color_ids, @colors, :id, :name do |color| %>
+                  <%= color.label { color.check_box + color.text } %>
+                  <% end %>
+              </div>
+            </div>
+            
+       
+     
+      <div class="row">
+        <div class="mb-5 mx-auto">
+          <%= f.submit "衣類登録", class: "btn btn-success px-5" %>
+         </div>
+      </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

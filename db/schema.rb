@@ -65,9 +65,10 @@ ActiveRecord::Schema.define(version: 2023_06_13_070156) do
     t.integer "genre_id", null: false
     t.string "name", null: false
     t.text "description", null: false
-    t.integer "status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status"
+    t.integer "#<ActiveRecord::ConnectionAdapters::SQLite3::TableDefinition:0x00007fad892be7b8>"
   end
 
   create_table "colors", force: :cascade do |t|

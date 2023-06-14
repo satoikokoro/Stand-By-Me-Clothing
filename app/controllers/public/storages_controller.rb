@@ -1,15 +1,15 @@
 class Public::StoragesController < ApplicationController
-  
+
   def index
     @storages = Storage.page(params[:page]).per(12)
     @storages_all = Storage.all
   end
-  
+
   def new
     @storage = Storage.new
     @storages = Storage.all
   end
-  
+
   def create
     @storage = Storage.new(storage_params)
     if @storage.save
@@ -20,7 +20,7 @@ class Public::StoragesController < ApplicationController
       #フラッシュメッセージ検討
     end
   end
-  
+
   def edit
     @storage = Storage.find(params[:id])
   end
@@ -33,7 +33,7 @@ class Public::StoragesController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def destroy
     storage = Storage.find(params[:id])
     storage.destroy
@@ -41,9 +41,9 @@ class Public::StoragesController < ApplicationController
   end
 
   private
-  
+
   def storage_params
     params.require(:storage).permit(:name, :image)
   end
-  
+
 end
