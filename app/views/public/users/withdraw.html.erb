@@ -1,2 +1,11 @@
-<h1>Public::Users#withdraw</h1>
-<p>Find me in app/views/public/users/withdraw.html.erb</p>
+<div class='container'>
+  <div class='text-center py-5'>
+    <h3>本当に削除しますか？</h3>
+    <p>
+      退会すると、登録した情報が閲覧できなくなります。</br>
+      退会する場合は、「退会する」をクリックしてください。
+    </p>
+    <%= link_to "退会しない", customers_mypage_path, class: "btn btn-primary" %>
+    <%= link_to "退会する", customers_out_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: "btn btn-danger" %>
+  </div>
+</div>
