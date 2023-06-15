@@ -6,7 +6,7 @@
         <table class="table">
           <tbody>
             <tr>
-              <%= image_tag @cloth.get_cloth_image(300, 300) %>
+              <%= image_tag @cloth.get_cloth_image(0, 0), width: "200×200" %>
             </tr>
           </tbody>
         </table>
@@ -44,8 +44,8 @@
 
         <div class="col-9">
           <div class="text-center">
-            <%= link_to "編集する", edit_clothe_path, class: "btn btn-md btn-success" %>
-            <%= link_to "削除する", clothe_path, method: :delete, class: "btn btn-danger" %>
+            <%= link_to "編集する", edit_cloth_path, class: "btn btn-md btn-success" %>
+            <%= link_to "削除する", cloth_path, method: :delete, class: "btn btn-danger" %>
           </div>
         </div>
       </div>

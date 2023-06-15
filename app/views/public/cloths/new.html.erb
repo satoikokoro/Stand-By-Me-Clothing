@@ -3,7 +3,7 @@
     <div class= "col">
       <h3 style="width: 16%; text-align: center; margin: 15px; background: #7f141a; color:white">衣類登録</h3>
       <div class="row justify-content-lg-center">
-        <%= form_with model: @cloth, url: clothes_path, local: true do |f| %>
+        <%= form_with model: @cloth, url: cloths_path, local: true do |f| %>
         <table class="table table-borderless mt-3">
           <tbody>
             <tr>
@@ -22,14 +22,14 @@
               <td><%= f.label "ジャンル" %></td>
               <td><%= f.collection_select :genre_id, @genres, :id, :name, {include_blank: "--選択してください--"} %></td>
             </tr>
- 
+
             <tr>
               <td><%= f.label "収納先" %></td>
               <td><%= f.collection_select :storage_id, @storages, :id, :name, {include_blank: "--選択してください--"} %></td>
             </tr>
            </tbody>
           </table>
-            
+
             <div class= "row">
               <div class= "col">
               <%= f.label "カラー" %>
@@ -38,9 +38,9 @@
                   <% end %>
               </div>
             </div>
-            
-       
-     
+
+
+
       <div class="row">
         <div class="mb-5 mx-auto">
           <%= f.submit "衣類登録", class: "btn btn-success px-5" %>

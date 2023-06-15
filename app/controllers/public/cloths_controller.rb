@@ -1,4 +1,4 @@
-class Public::ClothesController < ApplicationController
+class Public::ClothsController < ApplicationController
 
   def new
     @cloth = Cloth.new
@@ -15,7 +15,7 @@ class Public::ClothesController < ApplicationController
     @cloth.user_id = current_user.id
     # binding.pry
      if @cloth.save
-       redirect_to clothes_path
+       redirect_to cloths_path
      else
        render "new"
      end
@@ -23,7 +23,7 @@ class Public::ClothesController < ApplicationController
       #フラッシュメッセージ検討
 
   def index
-    @clothes = Cloth.page(params[:page]).per(12)
+    @cloths = Cloth.page(params[:page]).per(12)
   end
 
   def show
@@ -37,7 +37,7 @@ class Public::ClothesController < ApplicationController
   def update
     @cloth = Cloth.find(params[:id])
     if @cloth.update(cloth_params)
-      redirect_to clothe_path
+      redirect_to cloth_path
     else
       render "edit"
     end
@@ -47,7 +47,7 @@ class Public::ClothesController < ApplicationController
   def destroy
     cloth = Cloth.find(params[:id])
     cloth.destroy
-    redirect_to clothes_path
+    redirect_to cloths_path
   end
 
   private
