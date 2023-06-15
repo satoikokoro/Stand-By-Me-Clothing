@@ -1,6 +1,6 @@
 class Storage < ApplicationRecord
 
-  has_many :clothes
+  has_many :cloths
 
   has_one_attached :image
 

@@ -16,11 +16,15 @@ Rails.application.routes.draw do
    root to:"homes#top"
    get 'about' => 'homes#about'
 
-   resources :clothes
+   resources :cloths
+   #as: 'cloths'
+
 
    resources :users, only: [:index,:show,:edit,:update,]
+
    get 'users/withdraw' => 'users#withdraw'
    patch 'users/resign' => 'users#resign'
+
 
    resources :storages
 
@@ -43,7 +47,7 @@ Rails.application.routes.draw do
 
   resources :colors, only: [:index,:create,:edit,:update]
 
-  resources :clothes,only: [:show]
+  resources :cloths,only: [:show]
 
   resources :comments, only: [:destroy]
 

@@ -26,7 +26,6 @@ class Public::UsersController < ApplicationController
 
 
   def resign
-    
   end
 
 

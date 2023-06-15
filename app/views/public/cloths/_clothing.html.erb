@@ -3,7 +3,7 @@
       <% cloths.each do |cloth|%>
         <div class="col-xs-10 col-sm-10 col-md-6 col-lg-3">
             <div class="card w-100 bg-transparent border-0" style="width: 18rem;">
-            <%= link_to clothe_path(cloth) do%>
+            <%= link_to cloth_path(cloth) do%>
               <p class="img-wrap"><%= image_tag cloth.get_cloth_image(50, 50), width: "150×150", format: "jpeg", fallback: "no_image.jpeg" %></p>
             <% end %>
               <div class="card-body">

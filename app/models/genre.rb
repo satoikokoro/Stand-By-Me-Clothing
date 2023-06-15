@@ -1,6 +1,6 @@
 class Genre < ApplicationRecord
 
-  has_many :clothes, dependent: :destroy
+  has_many :cloths, dependent: :destroy
 
   validates :name, uniqueness: true, presence: true
 
