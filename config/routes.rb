@@ -17,8 +17,6 @@ Rails.application.routes.draw do
    get 'about' => 'homes#about'
 
    resources :cloths
-   #as: 'cloths'
-
 
    resources :users, only: [:index,:show,:edit,:update,]
 
@@ -28,7 +26,7 @@ Rails.application.routes.draw do
 
    resources :storages
 
-   resources :favorites, only: [:create,:destroy]
+   resource :favorites, only: [:create,:destroy]
 
    resources :comments, only: [:create,:destroy]
 

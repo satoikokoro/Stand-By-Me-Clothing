@@ -1,2 +1,32 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+<div class= "container">
+ <div class= "row">
+  <div class= "col">
+    <div class="row justify-content-lg-center">
+    <%= form_with model: @user, url: admin_user_path(@user), method: :patch do |f| %>
+        <table class= "table table-borderless mt-3">
+            <tbody>
+                <tr>
+                 <td><%= f.label "停止理由追記" %></td>
+                 <td><%= f.text_area :introduction, :class => "form-control description" %></td>
+                </tr>
+                <tr>
+                    <td><%= f.label "User Status" %></td>
+                    <td>
+                        <%= f.radio_button :user_status, false %>
+                        <%= f.label :user_status, "有効", {value: :false, style: "display: inline-block;"} %>
+                        <%= f.radio_button :user_status, true %>
+                        <%= f.label :user_status, "停止", {value: :true, style: "display: inline-block;"} %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+          <div class="mb-5 mx-auto">
+          <%= f.submit "確定",class: "btn btn-danger px-5" %>
+          </div>
+        </div>
+      <% end %>
+     </div>
+    </div>
+  </div>
+</div>

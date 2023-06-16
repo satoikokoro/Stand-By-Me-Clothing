@@ -1,2 +1,41 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<div class = "container">
+  <div class = "row">
+    <div class = "col">
+      <h2 style="width: 20%; text-aligin: center; margin: 15px">User 管理一覧</h2>
+
+      <table class="table">
+        <thead>
+            <tr>
+              <th>Image</th>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>User Status</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= link_to admin_user_path(user.id) do %>
+                  <%= image_tag user.get_user_image, size: "50x50"  %>
+                  <% end %>
+              </td>
+              <td><%= user.id %></td>
+              <td><%= link_to admin_user_path(user.id) do %>
+                  <%= user.name %>
+                  <% end %>
+              </td>
+              <td><%= user.email %></td>
+              <td><% if user.user_status == false %>
+                    <p class= "text-success">有効</p>
+                  <% else %>
+                    <p class= "text-secondary">停止</p>
+                  <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
