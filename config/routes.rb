@@ -16,7 +16,11 @@ Rails.application.routes.draw do
    root to:"homes#top"
    get 'about' => 'homes#about'
 
-   resources :cloths
+   resources :cloths do
+     resource :favorites, only: [:create,:destroy]
+     resources :comments, only: [:create,:destroy]
+    end
+
 
    resources :users, only: [:index,:show,:edit,:update,]
 
@@ -26,9 +30,7 @@ Rails.application.routes.draw do
 
    resources :storages
 
-   resource :favorites, only: [:create,:destroy]
 
-   resources :comments, only: [:create,:destroy]
 
   end
 
