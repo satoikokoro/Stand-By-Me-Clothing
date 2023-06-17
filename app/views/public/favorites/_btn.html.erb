@@ -1,10 +1,10 @@
  <% if cloth.favorited_by?(current_user) %>
-  <%= link_to cloth_favorites_path(cloth), method: :delete do %>
+  <%= link_to cloth_favorites_path(cloth), method: :delete, remote: true do %>
       <i class="fa fa-thumbs-up"></i>
       <%= cloth.favorites.count %> いいね
   <% end %>
  <% else %>
-  <%= link_to cloth_favorites_path(cloth), method: :post do %>
+  <%= link_to cloth_favorites_path(cloth), method: :post, remote: true do %>
       <i class="fa fa-thumbs-up"></i>
       <%= cloth.favorites.count %> いいね
   <% end %>

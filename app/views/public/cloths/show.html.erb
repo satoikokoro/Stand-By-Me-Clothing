@@ -8,11 +8,16 @@
             <tr>
               <%= image_tag @cloth.get_cloth_image(0, 0), width: "200×200" %>
             </tr>
+            <tr>
+             <th>
+            <%= link_to "編集する", edit_cloth_path, class: "btn btn-md btn-success" %>
+            <%= link_to "削除する", cloth_path, method: :delete, class: "btn btn-danger" %>
+            </th>
           </tbody>
         </table>
+
       </div>
       <div class="col-md-8 offset-md-1">
-
         <table class="table table-hover table-inverse table-borderless" style="margin-top: 80px;">
           <tbody>
             <tr>
@@ -42,14 +47,12 @@
           </tbody>
         </table>
 
-        <div class="col-9">
-          <div class="text-center">
-            <%= link_to "編集する", edit_cloth_path, class: "btn btn-md btn-success" %>
-            <%= link_to "削除する", cloth_path, method: :delete, class: "btn btn-danger" %>
+          <div id="comments-area">
+            <%= render "public/comments/index", cloth: @cloth, comment: @comment %>
           </div>
+
         </div>
       </div>
     </div>
   </div>
-</div>
 

@@ -1,2 +1,57 @@
-<h1>Admin::Clothes#show</h1>
-<p>Find me in app/views/admin/clothes/show.html.erb</p>
+<div class= "container">
+  <div class="container px-5 px-sm-0 pt-5">
+    <div class="row">
+      <div class="col-md-3">
+        <h3 class="p-md-2" style="width: 70%; text-align: center; margin: 15px; background: #7f141a; color:white">衣類詳細</h3>
+        <table class="table">
+          <tbody>
+            <tr>
+              <%= image_tag @cloth.get_cloth_image(0, 0), width: "200×200" %>
+            </tr>
+            <tr>
+             <th>
+            <%= link_to "編集する", edit_cloth_path, class: "btn btn-md btn-success" %>
+            <%= link_to "削除する", cloth_path, method: :delete, class: "btn btn-danger" %>
+            </th>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="col-md-8 offset-md-1">
+        <table class="table table-hover table-inverse table-borderless" style="margin-top: 80px;">
+          <tbody>
+            <tr>
+              <th>衣類名</th>
+              <td><%= @cloth.name %></td>
+            </tr>
+            <tr>
+              <th>衣類説明</th>
+              <td><%= @cloth.description %></td>
+            </tr>
+            <tr>
+              <th>ジャンル</th>
+              <td><%= @cloth.genre.name %></td>
+            </tr>
+            <tr>
+              <th>収納先</th>
+              <td><%= @cloth.storage.name %></td>
+            </tr>
+
+            <tr>
+              <th>カラー</th>
+              <td><% @cloth.colors.each do |color| %>
+                  <p><%= color.name %></p>
+                  <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+          <div id="comments-area">
+            <%= render "public/comments/index", cloth: @cloth, comment: @comment %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>

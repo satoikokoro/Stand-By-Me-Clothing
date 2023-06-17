@@ -1,0 +1,28 @@
+  <div>
+    <%= form_with model:[cloth, comment], local: false do |f| %>
+      <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100" %>
+      <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+    <% end %>
+  </div>
+<br>
+<h4>＜コメント一覧＞</h4>
+<table>
+  <tbody>
+      <% cloth.comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= link_to user_path(comment.user) do %>
+            <%= image_tag comment.user.get_user_image, size: "50x50" %><br>
+            <%= comment.user.name %>
+          <% end %>
+        </td>
+        <td><%= comment.comment %></td>
+        <td>
+          <% if comment.user == current_user %>
+            <%= link_to "削除", cloth_comment_path(cloth, comment), method: :delete, remote: true, class: "btn-sm btn-outline-danger" %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

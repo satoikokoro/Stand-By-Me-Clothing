@@ -6,7 +6,7 @@ class Cloth < ApplicationRecord
   has_many :cloth_colors
   has_many :colors, through: :cloth_colors
   has_many :favorites, dependent: :destroy
-
+  has_many :comments, dependent: :destroy
 
   has_one_attached :image
 

@@ -30,8 +30,6 @@ Rails.application.routes.draw do
 
    resources :storages
 
-
-
   end
 
 
