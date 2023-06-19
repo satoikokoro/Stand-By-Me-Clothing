@@ -1,5 +1,5 @@
 class Storage < ApplicationRecord
-
+  belongs_to :user
   has_many :cloths
 
   has_one_attached :image

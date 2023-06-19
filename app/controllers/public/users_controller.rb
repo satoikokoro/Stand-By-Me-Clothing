@@ -1,6 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update, :resign]
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
     @users = User.all
@@ -26,6 +26,10 @@ class Public::UsersController < ApplicationController
 
 
   def resign
+    current_user.update(user_status: false)
+    reset_session
+    flash[:notice] = "またのご利用をお待ちしております。"
+    redirect_to root_path
   end
 
 
@@ -34,6 +38,7 @@ class Public::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :image)
   end
+
 
   def ensure_correct_user
     @user = User.find(params[:id])

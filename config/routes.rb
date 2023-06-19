@@ -21,11 +21,12 @@ Rails.application.routes.draw do
      resources :comments, only: [:create,:destroy]
     end
 
+    get 'users/withdraw' => 'users#withdraw'
+    patch 'users/resign' => 'users#resign'
 
    resources :users, only: [:index,:show,:edit,:update,]
 
-   get 'users/withdraw' => 'users#withdraw'
-   patch 'users/resign' => 'users#resign'
+
 
 
    resources :storages
@@ -45,7 +46,7 @@ Rails.application.routes.draw do
 
   resources :colors, only: [:index,:create,:edit,:update]
 
-  resources :cloths,only: [:show]
+  resources :cloths,only: [:index, :show, :destroy]
 
   resources :comments, only: [:destroy]
 

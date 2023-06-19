@@ -10,8 +10,7 @@
             </tr>
             <tr>
              <th>
-            <%= link_to "編集する", edit_cloth_path, class: "btn btn-md btn-success" %>
-            <%= link_to "削除する", cloth_path, method: :delete, class: "btn btn-danger" %>
+            <%= link_to "削除する", admin_cloth_path, method: :delete, class: "btn btn-danger" %>
             </th>
           </tbody>
         </table>
@@ -47,9 +46,26 @@
           </tbody>
         </table>
 
-          <div id="comments-area">
-            <%= render "public/comments/index", cloth: @cloth, comment: @comment %>
-          </div>
+
+<h4>＜コメント一覧＞</h4>
+<table>
+  <tbody>
+      <% @cloth.comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= link_to user_path(comment.user) do %>
+            <%= image_tag comment.user.get_user_image, size: "50x50" %><br>
+            <%= comment.user.name %>
+          <% end %>
+        </td>
+        <td><%= comment.comment %></td>
+        <td>
+            <%= link_to "削除", admin_comment_path(comment), method: :delete, class: "btn-sm btn-outline-danger" %>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
 
         </div>
       </div>

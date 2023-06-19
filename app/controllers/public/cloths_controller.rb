@@ -51,6 +51,7 @@ class Public::ClothsController < ApplicationController
     redirect_to cloths_path
   end
 
+
   private
 
   def cloth_params
