@@ -24,4 +24,17 @@ class Cloth < ApplicationRecord
       favorites.exists?(user_id: user.id)
     end
 
+  # 衣類のキーワード検索 条件分岐
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Cloth.where(name: content)
+    elsif method == 'forward'
+      Cloth.where('name LIKE ?', content+'%')
+    elsif method == 'backward'
+      Cloth.where('name LIKE ?', '%'+content)
+    else
+      Cloth.where('name LIKE ?', '%'+content+'%')
+    end
+  end
+
 end
