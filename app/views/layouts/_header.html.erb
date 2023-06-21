@@ -1,0 +1,89 @@
+<header class="border-bottom">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-white">
+    <div class="container">
+      <div class="navbar-brand" href="/"><span>LOGO</span></div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+
+
+       <% if admin_signed_in? %>
+
+          <li>
+            <%= link_to "衣類一覧", admin_root_path, class: 'nav-link text-dark' %>
+          </li>
+
+          <li>
+            <%= link_to "User一覧", admin_users_path, class: 'nav-link text-dark' %>
+          </li>
+
+          <li>
+            <%= link_to "Genre一覧", admin_genres_path, class: 'nav-link text-dark' %>
+          </li>
+
+          <li>
+            <%= link_to "Color一覧", admin_colors_path, class: 'nav-link text-dark' %>
+          </li>
+
+          <li>
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+          </li>
+
+        <% elsif user_signed_in? %>
+
+          <li>
+            <%= link_to "Myクローゼット", storages_path, class: 'nav-link text-dark' %>
+          </li>
+
+          <li>
+            <%=  link_to "Ourクローゼット", cloths_path , class: 'nav-link text-dark' %>
+          </li>
+
+          <li>
+            <%= link_to "衣類投稿", new_cloth_path, class: 'nav-link text-dark' %>
+          </li>
+
+          <li>
+            <%= link_to "収納先投稿", new_storage_path, class: 'nav-link text-dark' %>
+          </li>
+
+          <li>
+            <%= link_to "USERS", users_path, class: 'nav-link text-dark' %>
+          </li>
+
+
+          <li>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+          </li>
+
+        <% else %>
+
+          <li>
+            <%= link_to "About", about_path, class: 'nav-link text-dark' %>
+          </li>
+
+          <li>
+            <%= link_to "Ourクローゼット", root_path, class: 'nav-link text-dark' %>
+          </li>
+
+          <li>
+            <%= link_to "会員登録", new_user_registration_path, class: 'nav-link text-dark' %>
+          </li>
+
+          <li>
+            <%= link_to "ログイン", new_user_session_path ,class: 'nav-link text-dark'  %>
+          </li>
+
+          <li>
+            <!--%= link_to "お試しログイン", _path ,class: 'nav-link text-dark'  %>-->
+          </li>
+
+          <% end %>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

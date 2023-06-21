@@ -1,2 +1,34 @@
-<h1>Admin::Colors#index</h1>
-<p>Find me in app/views/admin/colors/index.html.erb</p>
+<div class="container">
+ <div class="pt-5">
+   <%= form_with model: @color, url: admin_colors_path, method: :post, local: true do |f| %>
+  <table class="table table-borderless">
+   <tbody class="row justify-content-start">
+    <tr class="pt-4">
+     <th>カラー名</th>
+     <td><%= f.text_field :name, placeholder:"カラー名" %></td>
+     <td><%= f.submit '新規登録', class: "btn btn-sm btn-success" %></td>
+    </tr>
+   </tbody>
+   <% end %>
+  </table>
+ </div>
+</div>
+<div class="container">
+ <div class="pt-3">
+  <table>
+   <thead>
+    <td></td>
+    <th class="col-5" style="width: 100%; text-align: center; margin: 15px; background: #eee">ジャンル</th>
+   </thead>
+    <% @colors.each do |color| %>
+   <tbody>
+    <tr class="table">
+     <td><%= color.name %></td>
+     <td></td>
+     <td><%= link_to "編集する", edit_admin_color_path(color.id), class: "btn-success btn-sm mx-auto" %></td>
+    </tr>
+    <% end %>
+   </tbody>
+  </table>
+ </div>
+</div>
