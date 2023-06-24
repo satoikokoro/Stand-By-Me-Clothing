@@ -1,7 +1,9 @@
 <header class="border-bottom">
   <nav class="navbar navbar-expand-lg navbar-dark bg-white">
     <div class="container">
-      <div class="navbar-brand" href="/"><span>LOGO</span></div>
+      <%= link_to root_path do %>
+      <%= image_tag 'LOGO.png', width: '8%' %>
+      <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -11,6 +13,7 @@
 
        <% if admin_signed_in? %>
 
+         <div class ="row">
           <li>
             <%= link_to "衣類一覧", admin_root_path, class: 'nav-link text-dark' %>
           </li>
@@ -30,9 +33,12 @@
           <li>
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
           </li>
+        </div>
 
         <% elsif user_signed_in? %>
 
+
+        <div class="row">
           <li>
             <%= link_to "Myクローゼット", storages_path, class: 'nav-link text-dark' %>
           </li>
@@ -53,13 +59,14 @@
             <%= link_to "USERS", users_path, class: 'nav-link text-dark' %>
           </li>
 
-
           <li>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
           </li>
+        </div>
 
         <% else %>
 
+          <div class="row">
           <li>
             <%= link_to "About", about_path, class: 'nav-link text-dark' %>
           </li>
@@ -79,6 +86,8 @@
           <li>
             <!--%= link_to "お試しログイン", _path ,class: 'nav-link text-dark'  %>-->
           </li>
+
+          </div>
 
           <% end %>
 
