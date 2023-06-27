@@ -1,4 +1,7 @@
 class Public::ClothsController < ApplicationController
+  #ユーザーが認証されていることを確認するdeviseのメソット
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy, :create]
 
   def new
     @cloth = Cloth.new
@@ -56,6 +59,14 @@ class Public::ClothsController < ApplicationController
 
   def cloth_params
     params.require(:cloth).permit(:image, :name, :description, :genre_id, :storage_id, color_ids:[])
+  end
+
+  #ログイン中のユーザーのみアクションを適用させる
+  def ensure_correct_user
+    @cloth = Cloth.find(params[:id])
+    unless @cloth.user == current_user
+      redirect_to cloths_path(current_user), notice: "他ユーザーの衣類のため、処理できません。"
+    end
   end
 
 end

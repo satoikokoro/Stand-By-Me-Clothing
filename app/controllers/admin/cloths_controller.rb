@@ -1,4 +1,6 @@
 class Admin::ClothsController < ApplicationController
+  #ユーザーが認証されていることを確認するdeviseのメソット
+  before_action :authenticate_user!
 
   def index
     @cloths = Cloth.all

@@ -1,17 +1,19 @@
 <table class='table'>
   <tr><%= image_tag user.get_user_image, size: "200x200" %></tr>
   <tr>
-	  <th>name</th>
+	  <th>ニックネーム</th>
 	  <th><%= user.name %></th>
   </tr>
   <tr>
-	  <th>introduction</th>
+	  <th>紹介文</th>
 	  <th><%= user.introduction %></th>
   </tr>
 </table>
 
 <div class='row'>
-  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
-    <i class="fas fa-user-cog"></i>
+  <% if user == current_user %>
+    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
+      <i class="fa-solid fa-user-pen"></i></i>
+    <% end %>
   <% end %>
 </div>

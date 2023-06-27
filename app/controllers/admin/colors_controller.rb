@@ -1,9 +1,12 @@
 class Admin::ColorsController < ApplicationController
+  #ユーザーが認証されていることを確認するdeviseのメソット
+  before_action :authenticate_user!
+
   def index
     @color = Color.new
     @colors = Color.all
   end
-  
+
   def create
     @color = Color.new(color_params)
     if @color.save
@@ -18,7 +21,7 @@ class Admin::ColorsController < ApplicationController
   def edit
     @color = Color.find(params[:id])
   end
-  
+
   def update
     @color = Color.find(params[:id])
     if @color.update(color_params)
@@ -30,7 +33,7 @@ class Admin::ColorsController < ApplicationController
 
 
  private
- 
+
  def color_params
    params.require(:color).permit(:name)
  end

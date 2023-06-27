@@ -1,4 +1,8 @@
 class Public::StoragesController < ApplicationController
+#ユーザーログインがされていることを確認するdeviseのメソット
+before_action :authenticate_user!
+before_action :ensure_correct_user, only: [:edit, :update, :destroy, :create]
+
 
   def index
     # gemの機能によりallの記述を省略
@@ -8,7 +12,7 @@ class Public::StoragesController < ApplicationController
 
   def new
     @storage = Storage.new
-    @storages = Storage.all
+    @storages = current_user.storages.all
   end
 
   def show
@@ -50,6 +54,14 @@ class Public::StoragesController < ApplicationController
 
   def storage_params
     params.require(:storage).permit(:name, :image)
+  end
+
+    #ログイン中のユーザーのみアクションを適用させる
+  def ensure_correct_user
+    @storage = Storage.find(params[:id])
+    unless @storage.user == current_user
+      redirect_to storages_path(current_user), notice: "他ユーザーの衣類のため、処理できません。"
+    end
   end
 
 end

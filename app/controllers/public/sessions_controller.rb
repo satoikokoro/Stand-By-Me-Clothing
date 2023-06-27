@@ -37,9 +37,7 @@ class Public::SessionsController < Devise::SessionsController
    def user_state
     @user = User.find_by(email: params[:user][:email])
     return if @user&.valid_password?(params[:user][:password]) && (@user.user_status == false)
-
-    flash.now[:notice]="ログイン失敗しました。"
-    render 'new'
+    redirect_to new_user_session_path, notice: "ログイン失敗しました。"
    end
 
 end

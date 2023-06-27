@@ -19,6 +19,7 @@ class User < ApplicationRecord
     image
   end
 
+
   #ユーザー検索の条件分岐
   def self.search_for(content, method)
     if method == 'perfect'

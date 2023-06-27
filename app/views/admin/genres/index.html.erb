@@ -6,7 +6,7 @@
     <tr class="pt-4">
      <th>ジャンル名</th>
      <td><%= f.text_field :name, placeholder:"ジャンル名" %></td>
-     <td><%= f.submit '新規登録', class: "btn btn-sm btn-success" %></td>
+     <td><%= f.submit '新規登録', class: "btn btn-sm btn-warning" %></td>
     </tr>
    </tbody>
    <% end %>
@@ -25,7 +25,7 @@
     <tr class="table">
      <td><%= genre.name %></td>
      <td></td>
-     <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn-success btn-sm mx-auto" %></td>
+     <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn-outline-success btn-sm mx-auto" %></td>
     </tr>
     <% end %>
    </tbody>
