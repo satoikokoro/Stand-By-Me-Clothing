@@ -19,6 +19,7 @@ class User < ApplicationRecord
     image
   end
 
+
   #ユーザー検索の条件分岐
   def self.search_for(content, method)
     if method == 'perfect'
@@ -31,4 +32,19 @@ class User < ApplicationRecord
       User.where('name LIKE ?', '%' + content + '%')
     end
   end
+
+
+#ゲストログインメソット定義
+
+GUEST_USER_EMAIL = "guest@example.com"
+
+
+def self.guest
+  find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+    user.password = SecureRandom.urlsafe_base64
+    user.name ='guestuser'
+    user.introduction = ' '
+  end
+end
+
 end

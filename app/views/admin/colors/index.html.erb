@@ -6,7 +6,7 @@
     <tr class="pt-4">
      <th>カラー名</th>
      <td><%= f.text_field :name, placeholder:"カラー名" %></td>
-     <td><%= f.submit '新規登録', class: "btn btn-sm btn-success" %></td>
+     <td><%= f.submit '新規登録', class: "btn btn-sm btn-info" %></td>
     </tr>
    </tbody>
    <% end %>
@@ -18,14 +18,14 @@
   <table>
    <thead>
     <td></td>
-    <th class="col-5" style="width: 100%; text-align: center; margin: 15px; background: #eee">ジャンル</th>
+    <th class="col-5" style="width: 100%; text-align: center; margin: 15px; background: #eee">カラー</th></th>
    </thead>
     <% @colors.each do |color| %>
    <tbody>
     <tr class="table">
      <td><%= color.name %></td>
      <td></td>
-     <td><%= link_to "編集する", edit_admin_color_path(color.id), class: "btn-success btn-sm mx-auto" %></td>
+     <td><%= link_to "編集する", edit_admin_color_path(color.id), class: "btn-outline-primary btn-sm mx-auto" %></td>
     </tr>
     <% end %>
    </tbody>

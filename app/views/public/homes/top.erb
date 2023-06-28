@@ -1,0 +1,22 @@
+<div class='container'>
+     <div class='row'>
+        <div class='col-6'>
+         <h1>Stand By Me Clothing</h1>
+        </div>
+        <div class='col-3'>
+              <%=  link_to new_storage_path,class: 'nav-link text-black' do %>
+           <i class="fa-solid fa-box-archive"></i>収納先を登録する
+            <% end %>
+
+            <%=  link_to new_cloth_path,class: 'nav-link text-black' do %>
+              <i class="fa-solid fa-shirt"></i>衣類を投稿する
+            <% end %>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div style="position: relative; display:inline-block; margin-left: 125px; margin-top: 48px;">
+            <%= image_tag 'top.jpg', :size => '700x400' %>
+        </div>
+    </div>
+</div>

@@ -1,20 +1,21 @@
 <div class= "container">
  <div class= "row">
   <div class= "col">
+    <h3 style="width: 16%; text-align: center; margin: 15px; background: #000; color:white">衣類編集</h3>
     <div class="row justify-content-lg-center">
      <%= form_with model: @cloth, url: cloth_path(@cloth.id), method: :patch do |f| %>
         <table class="table table-borderless mt-3">
           <tbody>
             <tr>
-              <td><%= f.label "商品画像" %></td>
+              <td><%= f.label "衣類画像" %></td>
               <td><%= f.file_field :image, :class => "form-control-file user_image" %></td>
             </tr>
             <tr>
-              <td><%= f.label "商品名" %></td>
+              <td><%= f.label "衣類名" %></td>
               <td><%= f.text_field :name, :class => "form-control name" %></td>
             </tr>
             <tr>
-              <td><%= f.label "商品説明" %></td>
+              <td><%= f.label "衣類説明" %></td>
               <td><%= f.text_area :description, :class => "form-control description" %></td>
             </tr>
             <tr>
@@ -23,11 +24,11 @@
             </tr>
            <tr>
               <td><%= f.label "収納先" %></td>
-              <td><%= f.collection_select :storage_id, Storage.all, :id, :name, {include_blank: "--選択してください--"} %></td>
+              <td><%= f.collection_select :storage_id, @storages, :id, :name, {include_blank: "--選択してください--"} %></td>
             </tr>
            </tbody>
           </table>
-            
+
             <div class= "row">
               <div class= "col">
               <%= f.label "カラー" %>
@@ -36,7 +37,7 @@
                   <% end %>
               </div>
             </div>
-        
+
         <div class="row">
           <div class="mb-5 mx-auto">
           <%= f.submit "変更を保存",class: "btn btn-success px-5" %>

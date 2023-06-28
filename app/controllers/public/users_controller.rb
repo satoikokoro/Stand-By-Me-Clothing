@@ -1,14 +1,15 @@
 class Public::UsersController < ApplicationController
+  #ログイン中のみ閲覧できるdeviseのメソット
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update,:resign]
 
   def index
-    @users = User.all
+    @users = User.where(user_status: false).page(params[:page]).per(10)
   end
 
   def show
     @user = User.find(params[:id])
-    @cloths = @user.cloths
+    @cloths = @user.cloths.page(params[:page]).per(12)
   end
 
   def edit
@@ -26,7 +27,7 @@ class Public::UsersController < ApplicationController
 
 
   def resign
-    current_user.update(user_status: false)
+    current_user.update(user_status: true)
     reset_session
     flash[:notice] = "またのご利用をお待ちしております。"
     redirect_to root_path
@@ -39,11 +40,11 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:name, :introduction, :image)
   end
 
-
+  #ログイン中のユーザーのみアクションを適用させる
   def ensure_correct_user
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user), notice: "他のユーザーのため、処理できません。"
     end
   end
 

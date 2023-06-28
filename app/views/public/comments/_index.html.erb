@@ -1,9 +1,3 @@
-  <div>
-    <%= form_with model:[cloth, comment], local: false do |f| %>
-      <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100" %>
-      <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-    <% end %>
-  </div>
 <br>
 <h4>＜コメント一覧＞</h4>
 <table>
@@ -26,3 +20,9 @@
       <% end %>
   </tbody>
 </table>
+  <div>
+    <%= form_with model:[cloth, comment], local: false do |f| %>
+      <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100" %>
+      <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+    <% end %>
+  </div>
