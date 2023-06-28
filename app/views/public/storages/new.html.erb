@@ -30,7 +30,7 @@
        <td></td>
        <td>
          <%= link_to "編集する", edit_storage_path(storage.id), class: "btn-success btn-sm mx-auto" %>
-         <%= link_to "削除する", storage_path(storage.id), method: :delete, class: "btn-sm btn-danger" %>
+         <%= link_to "削除する", storage_path(storage.id),data: {confirm: "収納されている衣類も削除されますが、本当に削除しますか？"}, method: :delete, class: "btn-sm btn-danger" %>
          </td>
       </tr>
       <% end %>

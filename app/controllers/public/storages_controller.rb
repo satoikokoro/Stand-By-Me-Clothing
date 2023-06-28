@@ -1,13 +1,12 @@
 class Public::StoragesController < ApplicationController
 #ユーザーログインがされていることを確認するdeviseのメソット
 before_action :authenticate_user!
-before_action :ensure_correct_user, only: [:edit, :update, :destroy, :create]
+before_action :ensure_correct_user, only: [:edit, :update, :destroy,]
 
 
   def index
     # gemの機能によりallの記述を省略
     @storages = current_user.storages.page(params[:page]).per(12)
-    # @storages_all = Storage.page(params[:page]).per(12)
   end
 
   def new
@@ -23,8 +22,10 @@ before_action :ensure_correct_user, only: [:edit, :update, :destroy, :create]
     @storage = Storage.new(storage_params)
     @storage.user_id = current_user.id
     if @storage.save
+      flash[:notice] = "登録に成功しました"
       redirect_to new_storage_path
     else
+      flash.now[:alert] = "登録に失敗しました。"
       @storages = Storage.all
       render 'new'
       #フラッシュメッセージ検討
@@ -56,7 +57,7 @@ before_action :ensure_correct_user, only: [:edit, :update, :destroy, :create]
     params.require(:storage).permit(:name, :image)
   end
 
-    #ログイン中のユーザーのみアクションを適用させる
+    #ログイン中のユーザーのみコントローラーアクションを処理させる
   def ensure_correct_user
     @storage = Storage.find(params[:id])
     unless @storage.user == current_user

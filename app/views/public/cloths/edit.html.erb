@@ -24,7 +24,7 @@
             </tr>
            <tr>
               <td><%= f.label "収納先" %></td>
-              <td><%= f.collection_select :storage_id, Storage.all, :id, :name, {include_blank: "--選択してください--"} %></td>
+              <td><%= f.collection_select :storage_id, @storages, :id, :name, {include_blank: "--選択してください--"} %></td>
             </tr>
            </tbody>
           </table>

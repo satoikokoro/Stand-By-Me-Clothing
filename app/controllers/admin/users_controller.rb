@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
     #ユーザーが認証されていることを確認するdeviseのメソット
-    before_action :authenticate_user!
+    before_action :authenticate_admin!
 
   def index
     @users = User.all

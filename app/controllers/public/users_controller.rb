@@ -4,12 +4,12 @@ class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update,:resign]
 
   def index
-    @users = User.where(user_status: false)
+    @users = User.where(user_status: false).page(params[:page]).per(10)
   end
 
   def show
     @user = User.find(params[:id])
-    @cloths = @user.cloths
+    @cloths = @user.cloths.page(params[:page]).per(12)
   end
 
   def edit

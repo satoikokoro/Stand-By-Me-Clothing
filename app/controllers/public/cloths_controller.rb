@@ -1,12 +1,12 @@
 class Public::ClothsController < ApplicationController
   #ユーザーが認証されていることを確認するdeviseのメソット
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy, :create]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy,]
 
   def new
     @cloth = Cloth.new
     @genres = Genre.all
-    @storages = Storage.all
+    @storages = current_user.storages
     @colors = Color.all
   end
 
@@ -16,16 +16,18 @@ class Public::ClothsController < ApplicationController
     @colors = Color.all
     @cloth = Cloth.new(cloth_params)
     @cloth.user_id = current_user.id
-    # binding.pry
      if @cloth.save
+       flash[:notice] = "投稿に成功しました"
        redirect_to cloths_path
      else
+       flash.now[:alert] = "投稿に失敗しました。"
        render "new"
      end
   end
       #フラッシュメッセージ検討
 
   def index
+    #ページ分の決められた数のデータを新しい順に全て取得
     @cloths = Cloth.page(params[:page]).per(12)
   end
 
@@ -36,6 +38,7 @@ class Public::ClothsController < ApplicationController
 
   def edit
     @cloth = Cloth.find(params[:id])
+    @storages = current_user.storages
   end
 
   def update

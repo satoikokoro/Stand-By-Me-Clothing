@@ -1,6 +1,6 @@
 class Storage < ApplicationRecord
   belongs_to :user
-  has_many :cloths
+  has_many :cloths, dependent: :destroy
 
   has_one_attached :image
 
