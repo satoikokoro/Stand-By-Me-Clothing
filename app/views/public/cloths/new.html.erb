@@ -3,7 +3,7 @@
     <div class= "col">
       <h3 style="width: 16%; text-align: center; margin: 15px; background: #000; color:white">衣類登録</h3>
       <div class="row justify-content-lg-center">
-        <%= form_with model: @cloth, url: cloths_path, local: true do |f| %>
+        <%= form_with model: @cloth, url: cloths_path, method: :post, local: true do |f| %>
         <table class="table table-borderless mt-3">
           <tbody>
             <tr>
@@ -30,27 +30,24 @@
 
             <tr>
               <td><%= f.label "カラー" %></td>
-              <td><%= f.label "以下から選んでください" %></td>
-            </tr>
-
-           </tbody>
-          </table>
-
-              <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-             <%= f.collection_check_boxes :color_ids, @colors, :id, :name do |color| %>
+              <td><%= f.label "右から選択してください" %></td>
+              <td><%= f.collection_check_boxes :color_ids, @colors, :id, :name do |color| %>
                   <%= color.label { color.check_box + color.text } %>
-                  <% end %>
-                </div>
-              </div>
-          </div>
+                  <% end %></td>
+            </tr>
+            <tr>
+              <td><%= f.submit "衣類登録", class: "btn btn-success px-5" %></td>
+            </tr>
+            </tbody>
+          </table>
+        <% end %>
 
       <div class="row">
         <div class="col-7 mb-5 mx-auto ">
-          <%= f.submit "衣類登録", class: "btn btn-success px-5" %>
+
          </div>
       </div>
-      <% end %>
+
       </div>
       </div>
     </div>
