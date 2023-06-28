@@ -11,6 +11,7 @@ class Public::ClothsController < ApplicationController
   end
 
   def create
+    #byebug
     @genres =Genre.all
     @storages = Storage.all
     @colors = Color.all
