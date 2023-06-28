@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   #ログイン中のみ閲覧できるdeviseのメソット
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update,:resign]
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
     @users = User.where(user_status: false).page(params[:page]).per(10)
