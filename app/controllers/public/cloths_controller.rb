@@ -15,8 +15,12 @@ class Public::ClothsController < ApplicationController
     @storages = Storage.all
     @colors = Color.all
     @cloth = Cloth.new(cloth_params)
+    tags = Vision.get_image_data(cloth_params[:image])
     @cloth.user_id = current_user.id
      if @cloth.save
+       tags.each do |tag|
+         @cloth.tags.create(name: tag)
+        end
        flash[:notice] = "投稿に成功しました"
        redirect_to cloths_path
      else
@@ -71,5 +75,5 @@ class Public::ClothsController < ApplicationController
       redirect_to cloths_path(current_user), notice: "他ユーザーの衣類のため、処理できません。"
     end
   end
-
+  
 end
