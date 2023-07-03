@@ -33,7 +33,8 @@ module Vision
       request['Content-Type'] = 'application/json'
       response = https.request(request, params)
       response_body = JSON.parse(response.body)
-      byebug
+      pp response
+      pp response_body
       # APIレスポンス出力
       if (error = response_body['responses'][0]['error']).present?
         raise error['message']

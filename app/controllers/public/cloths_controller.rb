@@ -15,12 +15,19 @@ class Public::ClothsController < ApplicationController
     @storages = Storage.all
     @colors = Color.all
     @cloth = Cloth.new(cloth_params)
-    tags = Vision.get_image_data(cloth_params[:image])
+    color_properties = Vision.get_image_data(cloth_params[:image])
     @cloth.user_id = current_user.id
      if @cloth.save
-       tags.each do |tag|
-         @cloth.tags.create(name: tag)
-        end
+       pp color_properties
+       color_properties.each do |color_property|
+         pp color_property
+         @cloth.color_properties.create(green: color_property['color']['green'],
+                                        red:  color_property['color']['red'],
+                                        blue:  color_property['color']['blue'],
+                                        score:  color_property['score'],
+                                        pixelFraction:  color_property['pixelFraction']
+                                        )
+       end
        flash[:notice] = "投稿に成功しました"
        redirect_to cloths_path
      else
@@ -75,5 +82,5 @@ class Public::ClothsController < ApplicationController
       redirect_to cloths_path(current_user), notice: "他ユーザーの衣類のため、処理できません。"
     end
   end
-  
+
 end
