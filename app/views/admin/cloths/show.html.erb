@@ -52,7 +52,7 @@
       <% @cloth.comments.each do |comment| %>
       <tr>
         <td>
-          <%= link_to user_path(comment.user) do %>
+          <%= link_to admin_user_path(comment.user) do %>
             <%= image_tag comment.user.get_user_image, size: "50x50" %><br>
             <%= comment.user.name %>
           <% end %>
