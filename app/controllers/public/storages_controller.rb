@@ -16,6 +16,7 @@ before_action :ensure_correct_user, only: [:edit, :update, :destroy,]
 
   def show
     @storage = Storage.find(params[:id])
+    @cloths = @storage.cloths.page(params[:page]).per(12)
   end
 
   def create

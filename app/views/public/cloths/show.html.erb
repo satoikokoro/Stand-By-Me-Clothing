@@ -48,8 +48,23 @@
                   <% end %>
               </td>
             </tr>
+            <tr>
+              <th>カラープロパティ</th>
+              <td><% @cloth.color_properties.each do |color_property| %>
+                <span><%= color_property.green %></span>
+                <span><%= color_property.blue %></span>
+                <span><%= color_property.red %></span>
+                <span><%= color_property.score %></span>
+                <span><%= color_property.pixelFraction %></span>
+                <span style="background-color: rgb(<%= color_property.red %>,<%= color_property.green %>,<%= color_property.blue %>)">　</span>
+                <% end %>
+                </td>
+            </tr>
           </tbody>
         </table>
+
+              <%= render "public/cloths/chart" %>
+
 
           <div id="comments-area">
             <%= render "public/comments/index", cloth: @cloth, comment: @comment %>

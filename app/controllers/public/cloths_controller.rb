@@ -15,8 +15,20 @@ class Public::ClothsController < ApplicationController
     @storages = Storage.all
     @colors = Color.all
     @cloth = Cloth.new(cloth_params)
+
+    #カラープロパティをAPIから取得
+    color_properties = Vision.get_image_data(cloth_params[:image])
     @cloth.user_id = current_user.id
      if @cloth.save
+       color_properties.each do |color_property|
+         #pp color_property
+         @cloth.color_properties.create(green: color_property['color']['green'],
+                                        red:  color_property['color']['red'],
+                                        blue:  color_property['color']['blue'],
+                                        score:  color_property['score'],
+                                        pixelFraction:  color_property['pixelFraction']
+                                        )
+       end
        flash[:notice] = "投稿に成功しました"
        redirect_to cloths_path
      else
@@ -24,7 +36,7 @@ class Public::ClothsController < ApplicationController
        render "new"
      end
   end
-      #フラッシュメッセージ検討
+
 
   def index
     #ページ分の決められた数のデータを新しい順に全て取得
@@ -34,6 +46,7 @@ class Public::ClothsController < ApplicationController
   def show
     @cloth = Cloth.find(params[:id])
     @comment = Comment.new
+
   end
 
   def edit

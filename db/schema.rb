@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_18_094934) do
+ActiveRecord::Schema.define(version: 2023_07_03_063337) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -71,6 +71,18 @@ ActiveRecord::Schema.define(version: 2023_06_18_094934) do
     t.integer "#<ActiveRecord::ConnectionAdapters::SQLite3::TableDefinition:0x00007fad892be7b8>"
   end
 
+  create_table "color_properties", force: :cascade do |t|
+    t.integer "red"
+    t.integer "green"
+    t.integer "blue"
+    t.decimal "score", precision: 10, scale: 9
+    t.decimal "pixelFraction", precision: 9, scale: 8
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "cloth_id", null: false
+    t.index ["cloth_id"], name: "index_color_properties_on_cloth_id"
+  end
+
   create_table "colors", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -122,4 +134,5 @@ ActiveRecord::Schema.define(version: 2023_06_18_094934) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "color_properties", "cloths"
 end
