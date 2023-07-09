@@ -12,6 +12,7 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
+import "../stylesheets/cloths/show";
 import Chart from "chart.js/auto";
 global.Chart = Chart;
 
