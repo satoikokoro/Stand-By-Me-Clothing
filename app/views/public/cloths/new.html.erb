@@ -22,12 +22,10 @@
               <td><%= f.label "ジャンル" %></td>
               <td><%= f.collection_select :genre_id, @genres, :id, :name, {include_blank: "--選択してください--"} %></td>
             </tr>
-
             <tr>
               <td><%= f.label "収納先" %></td>
               <td><%= f.collection_select :storage_id, @storages, :id, :name, {include_blank: "--選択してください--"} %></td>
             </tr>
-
             <tr>
               <td><%= f.label "カラー" %></td>
               <td><%= f.label "右から選択してください" %></td>
