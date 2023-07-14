@@ -26,7 +26,7 @@
                   <% end %>
               </td>
               <td><%= user.email %></td>
-              <td><% if user.user_status == false %>
+              <td><% if user.is_deleted == false %>
                     <p class= "text-success">有効</p>
                   <% else %>
                     <p class= "text-secondary">停止</p>

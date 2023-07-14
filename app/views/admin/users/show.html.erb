@@ -30,7 +30,7 @@
                     <tr>
                       <th>User Status</th>
                       <td>
-                        <% if @user.user_status == false %>
+                        <% if @user.is_deleted == false %>
                         <strong class="text-success">有効</strong>
                         <% else %>
                         <strong class="text-secondary">停止</strong>

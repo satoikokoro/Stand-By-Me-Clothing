@@ -1,4 +1,10 @@
 ja:
+  enums:
+    cloth:
+      privacy_status:
+        public: "公開"
+        private: "非公開"
+
   activerecord:
     errors:
       messages:

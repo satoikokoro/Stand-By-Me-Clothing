@@ -34,6 +34,14 @@
                   <% end %></td>
             </tr>
             <tr>
+              <td><%= f.label "衣類の共有" %></td>
+              <td><%= f.label :privacy_status, '公開' %>
+                  <%= f.radio_button :privacy_status, 'public' %>
+                  <%= f.label :privacy_status, '非公開' %>
+                  <%= f.radio_button :privacy_status, 'private' %>
+              </td>
+            </tr>
+            <tr>
               <td><%= f.submit "衣類登録", class: "btn btn-success px-5" %></td>
             </tr>
             </tbody>

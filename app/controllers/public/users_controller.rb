@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
-    @users = User.where(user_status: false).page(params[:page]).per(10)
+    @users = User.where(is_deleted: false).page(params[:page]).per(10)
   end
 
   def show
@@ -27,7 +27,7 @@ class Public::UsersController < ApplicationController
 
 
   def resign
-    current_user.update(user_status: true)
+    current_user.update(is_deleted: true)
     reset_session
     flash[:notice] = "またのご利用をお待ちしております。"
     redirect_to root_path
