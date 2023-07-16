@@ -8,12 +8,11 @@
 
    <div class="row py-2">
     <div class= "col-sm-4 ml-5 pt-3">
-    <h5 style="background: #eee; font-weight: bold; width: 80% ">会員の方はこちらからログイン</h5>
+      <h5 style="background: #eee; font-weight: bold; width: 80% ">会員の方はこちらからログイン</h5>
     </div>
   </div>
 
-      <%= form_with model: @user, url:new_user_session_path do |f| %>
-
+    <%= form_with model: @user, url:new_user_session_path do |f| %>
        <div class="row my-2">
          <div class="col-sm-2 px-sm-0 offset-sm-1 my-1">
           <%= f.label :メールアドレス %>
@@ -32,15 +31,13 @@
         </div>
       </div>
 
-         <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-3 px-sm-0 my-3 ">
-          <div><%= f.submit "ログイン", class:"btn btn-primary px-5" %></div>
+        <div class="row">
+          <div class="col-sm-3"></div>
+            <div class="col-sm-3 px-sm-0 my-3 ">
+              <div><%= f.submit "ログイン", class:"btn btn-primary px-5" %></div>
+            </div>
+    <% end %>
         </div>
-      <% end %>
-      </div>
-
-    <br>
 
   <div class="row">
     <div class="col-sm-3 ml-5 bg-light w-25">

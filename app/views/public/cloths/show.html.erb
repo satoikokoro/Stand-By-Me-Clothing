@@ -17,42 +17,36 @@
             </th>
           </tbody>
         </table>
-
-        <div><%= render "public/cloths/chart" %></div>
-
-      </div>
-      <div class="col-md-8 offset-md-1">
-        <table class="table table-hover table-inverse table-borderless" style="margin-top: 80px;">
-          <tbody>
-            <tr>
-              <th>衣類名</th>
-              <td><%= @cloth.name %></td>
-            </tr>
-            <tr>
-              <th>衣類説明</th>
-              <td><%= @cloth.description %></td>
-            </tr>
-
-            <tr>
-              <th>ジャンル</th>
-              <td><%= @cloth.genre.name %></td>
-            </tr>
-
-            <tr>
-              <th>収納先</th>
-              <td><%= @cloth.storage.name %></td>
-            </tr>
-
-            <tr>
-              <th>カラー</th>
-              <td><% @cloth.colors.each do |color| %>
-                  <p><%= color.name %></p>
-                  <% end %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
+          <div><%= render "public/cloths/chart" %></div>
+        </div>
+        <div class="col-md-8 offset-md-1">
+          <table class="table table-hover table-inverse table-borderless" style="margin-top: 80px;">
+            <tbody>
+              <tr>
+                <th>衣類名</th>
+                <td><%= @cloth.name %></td>
+              </tr>
+              <tr>
+                <th>衣類説明</th>
+                <td><%= @cloth.description %></td>
+              </tr>
+              <tr>
+                <th>ジャンル</th>
+                <td><%= @cloth.genre.name %></td>
+              </tr>
+              <tr>
+                <th>収納先</th>
+                <td><%= @cloth.storage.name %></td>
+              </tr>
+              <tr>
+                <th>カラー</th>
+                <td><% @cloth.colors.each do |color| %>
+                    <p><%= color.name %></p>
+                    <% end %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
           <div id="comments-area">
             <%= render "public/comments/index", cloth: @cloth, comment: @comment %>
           </div>

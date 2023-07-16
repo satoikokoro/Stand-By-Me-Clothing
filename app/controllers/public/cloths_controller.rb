@@ -21,7 +21,6 @@ class Public::ClothsController < ApplicationController
     @cloth.user_id = current_user.id
      if @cloth.save
        color_properties.each do |color_property|
-         #pp color_property
          @cloth.color_properties.create(green: color_property['color']['green'],
                                         red:  color_property['color']['red'],
                                         blue:  color_property['color']['blue'],
@@ -47,7 +46,6 @@ class Public::ClothsController < ApplicationController
   def show
     @cloth = Cloth.find(params[:id])
     @comment = Comment.new
-
   end
 
   def edit
@@ -57,13 +55,23 @@ class Public::ClothsController < ApplicationController
 
   def update
     @cloth = Cloth.find(params[:id])
+    color_properties = Vision.get_image_data(cloth_params[:image])
     if @cloth.update(cloth_params)
+      # 受け取ったデータを使用してcolor_propertiesを更新
+      @cloth.color_properties.destroy_all
+      color_properties.each do |color_property|
+         @cloth.color_properties.create(green: color_property['color']['green'],
+                                        red:  color_property['color']['red'],
+                                        blue:  color_property['color']['blue'],
+                                        score:  color_property['score'],
+                                        pixelFraction:  color_property['pixelFraction']
+                                        )
+        end
       redirect_to cloth_path
     else
       render "edit"
     end
   end
-  #フラッシュメッセージ要検討
 
   def destroy
     cloth = Cloth.find(params[:id])

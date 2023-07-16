@@ -33,20 +33,18 @@
                   <%= color.label { color.check_box + color.text } %>
                   <% end %></td>
             </tr>
+              <!--e-numを用いて投稿ステータス追加予定-->
+              <!--<td>%= f.label "衣類の共有" %></td>-->
+                  <!--%= f.label :privacy_status, '公開' %>-->
+                  <!--%= f.radio_button :privacy_status, 'public' %>-->
+                  <!--%= f.label :privacy_status, '非公開' %>-->
+                  <!--%= f.radio_button :privacy_status, 'private' %>-->
             <tr>
               <td><%= f.submit "衣類登録", class: "btn btn-success px-5" %></td>
             </tr>
             </tbody>
           </table>
         <% end %>
-
-      <div class="row">
-        <div class="col-7 mb-5 mx-auto ">
-
-         </div>
-      </div>
-
-      </div>
       </div>
     </div>
   </div>

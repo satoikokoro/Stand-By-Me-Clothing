@@ -9,9 +9,11 @@ class Cloth < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :color_properties, dependent: :destroy
 
-  has_one_attached :image
+  #投稿の公開・非公開のstatusカラムの設定
+    enum privacy_status: { public: 0, private: 1 },_prefix: true
 
-    # Activestorage メソット
+  # Activestorage メソット
+    has_one_attached :image
     def get_cloth_image(width, height)
       unless image.attached?
         file_path = Rails.root.join('app/assets/images/cloth_no_image.jpg')
@@ -20,7 +22,7 @@ class Cloth < ApplicationRecord
     image
     end
 
-  #引数で渡されたユーザidがFavoritesテーブル内に存在していればtrue、存在していなければfalseを返す
+  #引数で渡されたユーザidがいいねテーブル内に存在していればtrue、存在していなければfalseを返す
     def favorited_by?(user)
       favorites.exists?(user_id: user.id)
     end
