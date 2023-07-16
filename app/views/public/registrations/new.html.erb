@@ -4,66 +4,60 @@
       <h2 style="width: 50%; text-align: center; margin: 15px; background: #000000; color:white">会員登録</h2>
     </div>
   </div>
-
-  <div class="row">
-      <%= form_with model: @user, url: user_registration_path do |f| %>
-      <table class="table table-borderless">
-        <tbody>
-         <div class="col-4">
-          <tr>
-            <th>名前</th>
-            <th>
-              <%= f.label :"ニックネーム" %>
-            </th>
-            <th>
-              <%= f.text_field :name, placeholder:"ネコ" %>
-            </th>
-          </tr>
-        </div>
-  </div>
-
       <div class="row">
-          <tr>
-            <th>プロフィール</th>
-            <th></th>
-            <th>
-              <%= f.text_area :introduction, autofocus: true, :class => "form-control introduction" %>
-            </th>
-          </tr>
-          <tr>
-            <th>メールアドレス</th>
-            <th></th>
-            <th>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com" %>
-            </th>
-          </tr>
-          <tr>
-            <th>パスワード(6文字以上)</th>
-            <th></th>
-            <th>
-              <%= f.password_field :password, autocomplete: "new-password" %>
-            </th>
-          </tr>
-          <tr>
-            <th>パスワード(確認用)</th>
-            <th></th>
-            <th>
-              <%= f.password_field :password, autocomplete: "new-password" %>
-            </th>
-          </tr>
-
-          <tr>
-            <th></th>
-            <th></th>
-            <th>
-              <%= f.submit "新規登録", class: 'btn btn-lg btn-success px-5' %>
-            </th>
-          </tr>
-        </tbody>
-      </table>
-      <% end %>
-    </div>
-
+          <%= form_with model: @user, url: user_registration_path do |f| %>
+          <table class="table table-borderless">
+            <tbody>
+             <div class="col-4">
+              <tr>
+                <th>名前</th>
+                <th></th>
+                <th>
+                  <%= f.text_field :name, placeholder:"ニックネーム" %>
+                </th>
+              </tr>
+            </div>
+      </div>
+      <div class="row">
+              <tr>
+                <th>プロフィール</th>
+                <th></th>
+                <th>
+                  <%= f.text_area :introduction, autofocus: true, :class => "form-control introduction" %>
+                </th>
+              </tr>
+              <tr>
+                <th>メールアドレス</th>
+                <th></th>
+                <th>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"sample@example.com" %>
+                </th>
+              </tr>
+              <tr>
+                <th>パスワード(6文字以上)</th>
+                <th></th>
+                <th>
+                  <%= f.password_field :password, autocomplete: "new-password" %>
+                </th>
+              </tr>
+              <tr>
+                <th>パスワード(確認用)</th>
+                <th></th>
+                <th>
+                  <%= f.password_field :password, autocomplete: "new-password" %>
+                </th>
+              </tr>
+              <tr>
+                <th></th>
+                <th></th>
+                <th>
+                  <%= f.submit "新規登録", class: 'btn btn-lg btn-success px-5' %>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
     <div class="row">
       <div class="col-4">
        <h3 style="width: 80%; text-align: center; margin: 15px; background: #eee">既に登録済みの方</h3>
@@ -72,5 +66,4 @@
         </label>
       </div>
     </div>
-
 </div>
