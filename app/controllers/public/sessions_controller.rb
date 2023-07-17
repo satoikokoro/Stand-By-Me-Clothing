@@ -32,11 +32,10 @@ class Public::SessionsController < Devise::SessionsController
    def configure_sign_in_params
      devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
    end
-
    #退会したユーザーはログインできないようにする
    def user_state
     @user = User.find_by(email: params[:user][:email])
-    return if @user&.valid_password?(params[:user][:password]) && (@user.user_status == false)
+    return if @user&.valid_password?(params[:user][:password]) && (@user.is_deleted == false)
     redirect_to new_user_session_path, notice: "ログイン失敗しました。"
    end
 
