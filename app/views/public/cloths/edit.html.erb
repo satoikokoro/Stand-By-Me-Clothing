@@ -22,9 +22,17 @@
               <td><%= f.label "ジャンル" %></td>
               <td><%= f.collection_select :genre_id, Genre.all, :id, :name, {include_blank: "--選択してください--"} %></td>
             </tr>
-           <tr>
+            <tr>
               <td><%= f.label "収納先" %></td>
               <td><%= f.collection_select :storage_id, @storages, :id, :name, {include_blank: "--選択してください--"} %></td>
+            </tr>
+            <tr>
+              <td><%= f.label "公開設定" %></td>
+              <td><%= f.radio_button :privacy_status, Cloth.privacy_statuses.key(0) %>
+                  <%= f.label :privacy_status, Cloth.privacy_statuses_i18n[:public], value: Cloth.privacy_statuses.key(0) %>
+                  <%= f.radio_button :privacy_status, Cloth.privacy_statuses.key(1) %>
+                  <%= f.label :privacy_status, Cloth.privacy_statuses_i18n[:private], value: Cloth.privacy_statuses.key(1) %>
+              </td>
             </tr>
            </tbody>
           </table>

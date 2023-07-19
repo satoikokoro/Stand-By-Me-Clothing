@@ -9,11 +9,16 @@ class Cloth < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :color_properties, dependent: :destroy
 
+    
+
+
   #投稿の公開・非公開のstatusカラムの設定
     enum privacy_status: { public: 0, private: 1 },_prefix: true
 
   # Activestorage メソット
     has_one_attached :image
+
+
     def get_cloth_image(width, height)
       unless image.attached?
         file_path = Rails.root.join('app/assets/images/cloth_no_image.jpg')
@@ -41,3 +46,9 @@ class Cloth < ApplicationRecord
   end
 
 end
+
+private
+
+  def validate_images_presence
+    errors.add(:image, '画像が添付されている必要があります') unless image.attached?
+  end

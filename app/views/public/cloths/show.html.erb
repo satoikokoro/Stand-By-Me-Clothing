@@ -23,6 +23,9 @@
           <table class="table table-hover table-inverse table-borderless" style="margin-top: 80px;">
             <tbody>
               <tr>
+              <h2>＜衣類情報＞</h2>
+              </tr>
+              <tr>
                 <th>衣類名</th>
                 <td><%= @cloth.name %></td>
               </tr>
@@ -31,12 +34,12 @@
                 <td><%= @cloth.description %></td>
               </tr>
               <tr>
-                <th>ジャンル</th>
-                <td><%= @cloth.genre.name %></td>
-              </tr>
-              <tr>
                 <th>収納先</th>
                 <td><%= @cloth.storage.name %></td>
+              </tr>
+              <tr>
+                <th>ジャンル</th>
+                <td><%= @cloth.genre.name %></td>
               </tr>
               <tr>
                 <th>カラー</th>
@@ -44,6 +47,10 @@
                     <p><%= color.name %></p>
                     <% end %>
                 </td>
+              </tr>
+              <tr>
+                <th>投稿状況</th>
+                <td><%= @cloth.privacy_status_i18n %></td>
               </tr>
             </tbody>
           </table>
