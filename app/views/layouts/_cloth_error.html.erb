@@ -1,0 +1,8 @@
+<% if @cloth.errors.any? %>
+  <%= @cloth.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @cloth.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>

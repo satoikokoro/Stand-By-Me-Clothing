@@ -1,6 +1,6 @@
 class Cloth < ApplicationRecord
-  belongs_to :genre
-  belongs_to :storage
+  belongs_to :genre, optional: true
+  belongs_to :storage, optional: true
   belongs_to :user
 
   has_many :cloth_colors
@@ -9,7 +9,11 @@ class Cloth < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :color_properties, dependent: :destroy
 
-    
+  #衣類投稿での投稿制限
+  validates :name, presence:true
+  validates :genre_id, presence:true
+  validates :storage_id, presence:true
+  validates :privacy_status, presence:true
 
 
   #投稿の公開・非公開のstatusカラムの設定
@@ -17,8 +21,6 @@ class Cloth < ApplicationRecord
 
   # Activestorage メソット
     has_one_attached :image
-
-
     def get_cloth_image(width, height)
       unless image.attached?
         file_path = Rails.root.join('app/assets/images/cloth_no_image.jpg')
@@ -46,9 +48,3 @@ class Cloth < ApplicationRecord
   end
 
 end
-
-private
-
-  def validate_images_presence
-    errors.add(:image, '画像が添付されている必要があります') unless image.attached?
-  end
