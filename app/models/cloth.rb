@@ -10,7 +10,8 @@ class Cloth < ApplicationRecord
   has_many :color_properties, dependent: :destroy
 
   #衣類投稿での投稿制限
-  validates :name, presence:true
+  validates :name, presence:true,length:{maximum:20}
+  validates :name,
   validates :genre_id, presence:true
   validates :storage_id, presence:true
   validates :privacy_status, presence:true
