@@ -1,20 +1,26 @@
 <span class="ml-3">(全<%= cloths.where(privacy_status: :public).count %>件)</span>
-    <div class="row mt-3 mb-3 text-center text-xs-center text-sm-center text-md-left">
-      <% cloths.each do |cloth|%>
-        <div class="col-xs-10 col-sm-10 col-md-6 col-lg-3">
-            <div class="card w-100 bg-transparent border-0" style="width: 18rem;">
-            <%= link_to cloth_path(cloth) do%>
-              <p class="img-wrap"><%= image_tag cloth.get_cloth_image(0, 0), width: "95", format: "jpeg", fallback: "no_image.jpeg" %></p>
-            <% end %>
-              <div class="card-body">
-                <p class="item-details item-name card-text font-weight-bold"><%= cloth.name %></p>
-              </div>
-              <div id="favorite_buttons_<%= cloth.id %>">
-                <%= render 'public/favorites/btn',cloth: cloth %>
-                </div>
+<div class="container mt-3 mb-3">
+  <div class="row justify-content-center">
+    <% cloths.each do |cloth| %>
+      <div class="col-xs-10 col-sm-10 col-md-6 col-lg-3">
+        <div class="card bg-transparent border-0">
+          <%= link_to cloth_path(cloth) do %>
+            <div class="img-wrap">
+              <%= image_tag cloth.get_cloth_image(0, 0), width: "95", format: "jpeg", fallback: "no_image.jpeg" %>
             </div>
+          <% end %>
+          <div class="card-body">
+            <p class="item-details item-name card-text font-weight-bold"><%= cloth.name %></p>
+          </div>
+          <div id="favorite_buttons_<%= cloth.id %>">
+            <%= render 'public/favorites/btn', cloth: cloth %>
+          </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-      <%= paginate cloths, class:"text-center" %>
+<div class="text-center">
+  <%= paginate cloths %>
+</div>

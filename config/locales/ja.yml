@@ -10,6 +10,7 @@ ja:
       cloth:
         images: "画像"
         name: "衣類名"
+        description: "衣類説明"
         genre_id: "ジャンル"
         storage_id: "収納先"
         privacy_status: "公開設定"

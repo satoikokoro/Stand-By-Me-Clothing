@@ -11,7 +11,7 @@ class Cloth < ApplicationRecord
 
   #衣類投稿での投稿制限
   validates :name, presence:true,length:{maximum:20}
-  validates :name,
+  validates :description,length:{maximum:150}
   validates :genre_id, presence:true
   validates :storage_id, presence:true
   validates :privacy_status, presence:true
