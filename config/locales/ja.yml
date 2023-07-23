@@ -6,12 +6,15 @@ ja:
         private: "非公開"
 
   activerecord:
-    errors:
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      cloth:
+        images: "画像"
+        name: "衣類名"
+        description: "衣類説明"
+        genre_id: "ジャンル"
+        storage_id: "収納先"
+        privacy_status: "公開設定"
+
   date:
     abbr_day_names:
     - 日

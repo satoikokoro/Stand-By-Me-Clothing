@@ -1,15 +1,17 @@
-<div class='container px-5 px-sm-0'>
-   <div class="col text-center mt-3">
-  <%= render 'public/searches/form' %>
+<div class="container px-2 px-sm-0">
+  <div class="row">
+    <div class="col text-center mt-3">
+      <%= render 'public/searches/form' %>
+    </div>
   </div>
-  <div class='row'>
-    <div class='col-md-3'>
+  <div class="row">
+    <div class="col-md-3">
       <h2>プロフィール</h2>
       <%= render 'info', user: current_user %>
     </div>
-    <div class='col-md-8 offset-md-1'>
+    <div class="col-md-8">
       <h2>ユーザー</h2>
-      <%= render 'index',users: @users %>
+      <%= render 'index', users: @users %>
     </div>
   </div>
 </div>

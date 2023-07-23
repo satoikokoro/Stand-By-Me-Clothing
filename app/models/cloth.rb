@@ -1,6 +1,6 @@
 class Cloth < ApplicationRecord
-  belongs_to :genre
-  belongs_to :storage
+  belongs_to :genre, optional: true
+  belongs_to :storage, optional: true
   belongs_to :user
 
   has_many :cloth_colors
@@ -8,6 +8,14 @@ class Cloth < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :color_properties, dependent: :destroy
+
+  #衣類投稿での投稿制限
+  validates :name, presence:true,length:{maximum:20}
+  validates :description,length:{maximum:150}
+  validates :genre_id, presence:true
+  validates :storage_id, presence:true
+  validates :privacy_status, presence:true
+
 
   #投稿の公開・非公開のstatusカラムの設定
     enum privacy_status: { public: 0, private: 1 },_prefix: true

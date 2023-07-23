@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row">
-    <%= render 'genre_list', genres: @genres %>
-    <div class="col-md-9 offset-md-1 mt-5">
+    <div class="col-md-5">
+      <%= render 'genre_list', genres: @genres %>
+    </div>
+    <div class="col-md-7 mt-5">
       <div>
         <h2><%= @genre.name %></h2>
       </div>

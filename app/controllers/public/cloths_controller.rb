@@ -16,30 +16,43 @@ class Public::ClothsController < ApplicationController
     @colors = Color.all
     @cloth = Cloth.new(cloth_params)
 
-    #カラープロパティをAPIから取得
-    color_properties = Vision.get_image_data(cloth_params[:image])
-    @cloth.user_id = current_user.id
-     if @cloth.save
-       color_properties.each do |color_property|
-         @cloth.color_properties.create(green: color_property['color']['green'],
-                                        red:  color_property['color']['red'],
-                                        blue:  color_property['color']['blue'],
-                                        score:  color_property['score'],
-                                        pixelFraction:  color_property['pixelFraction']
-                                        )
-       end
-       flash[:notice] = "投稿に成功しました"
-       redirect_to cloths_path
-     else
-       flash.now[:alert] = "投稿に失敗しました。"
-       render "new"
-     end
+    if params[:cloth][:image].present?
+      #カラープロパティをAPIから取得
+      color_properties = Vision.get_image_data(params[:cloth][:image])
+      @cloth.user_id = current_user.id
+         if @cloth.save
+           color_properties.each do |color_property|
+             @cloth.color_properties.create(green: color_property['color']['green'],
+                                            red:  color_property['color']['red'],
+                                            blue:  color_property['color']['blue'],
+                                            score:  color_property['score'],
+                                            pixelFraction:  color_property['pixelFraction']
+                                            )
+           end
+           flash[:notice] = "投稿に成功しました"
+           redirect_to cloth_path(@cloth)
+         else
+           flash.now[:alert] = "投稿に失敗しました。"
+           render "new"
+         end
+    else
+      #画像が添付されていな処理
+        @cloth.user_id = current_user.id
+        if @cloth.save
+          flash[:notice] = "投稿に成功しました"
+          redirect_to cloth_path(@cloth)
+        else
+          flash.now[:alert] = "投稿に失敗しました。"
+          render "new"
+        end
+    end
   end
 
 
   def index
     #ページ分の決められた数のデータを新しい順に全て取得
     @cloths = Cloth.page(params[:page]).per(12)
+    @cloths = Cloth.where(privacy_status: :public).page(params[:page]).per(12)
     @genres = Genre.all
   end
 
@@ -55,21 +68,29 @@ class Public::ClothsController < ApplicationController
 
   def update
     @cloth = Cloth.find(params[:id])
-    color_properties = Vision.get_image_data(cloth_params[:image])
-    if @cloth.update(cloth_params)
-      # 受け取ったデータを使用してcolor_propertiesを更新
-      @cloth.color_properties.destroy_all
-      color_properties.each do |color_property|
-         @cloth.color_properties.create(green: color_property['color']['green'],
-                                        red:  color_property['color']['red'],
-                                        blue:  color_property['color']['blue'],
-                                        score:  color_property['score'],
-                                        pixelFraction:  color_property['pixelFraction']
-                                        )
+    if params[:cloth][:image].present?
+      color_properties = Vision.get_image_data(params[:cloth][:image])
+      if @cloth.update(cloth_params)
+        # createアクションで作成したcolor_propertiesを削除して、再度取得
+        @cloth.color_properties.destroy_all
+        color_properties.each do |color_property|
+           @cloth.color_properties.create(green: color_property['color']['green'],
+                                          red:  color_property['color']['red'],
+                                          blue:  color_property['color']['blue'],
+                                          score:  color_property['score'],
+                                          pixelFraction:  color_property['pixelFraction']
+                                          )
         end
-      redirect_to cloth_path
+        redirect_to cloth_path
+      else
+        render "edit"
+      end
     else
-      render "edit"
+      if @cloth.update(cloth_params)
+        redirect_to cloth_path
+      else
+        render "edit"
+      end
     end
   end
 
@@ -88,7 +109,7 @@ class Public::ClothsController < ApplicationController
   private
 
   def cloth_params
-    params.require(:cloth).permit(:image, :name, :description, :genre_id, :storage_id, color_ids:[])
+    params.require(:cloth).permit(:image, :name, :description, :genre_id, :storage_id, :privacy_status, color_ids:[])
   end
 
   #ログイン中のユーザーのみアクションを適用させる
