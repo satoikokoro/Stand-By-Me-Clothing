@@ -1,55 +1,51 @@
 <div class="container">
   <div class="row">
-    <div class="col-6 ml-2">
-      <h4 style="width: 30%; text-align: center; margin: 15px; background: #000033; font-weight: bold; color:white">
-        ログイン</h4>
+    <div class="col-12">
+      <h4 class="text-center my-4" style="background: #000033; font-weight: bold; color: white;">ログイン</h4>
     </div>
   </div>
 
-   <div class="row py-2">
-    <div class= "col-sm-4 ml-5 pt-3">
-      <h5 style="background: #eee; font-weight: bold; width: 80% ">会員の方はこちらからログイン</h5>
+  <div class="row py-2">
+    <div class="col-sm-8 offset-sm-2 pt-3">
+      <h5 class="text-center bg-light font-weight-bold">会員の方はこちらからログイン</h5>
     </div>
   </div>
 
-    <%= form_with model: @user, url:new_user_session_path do |f| %>
-       <div class="row my-2">
-         <div class="col-sm-2 px-sm-0 offset-sm-1 my-1">
-          <%= f.label :メールアドレス %>
-         </div>
-         <div class="col-sm-3 px-sm-0 my-1">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email",:size => "40",placeholder: "sample@example.com" %>
-          </div>
+  <%= form_with model: @user, url: new_user_session_path do |f| %>
+    <div class="form-group row my-2">
+      <label for="email" class="col-sm-3 col-form-label">メールアドレス</label>
+      <div class="col-sm-9">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "sample@example.com" %>
       </div>
+    </div>
 
-       <div class="row my-2">
-        <div class="col-sm-2 px-sm-0 offset-sm-1 my-3">
-          <%= f.label :パスワード %>
-        </div>
-        <div class="col-sm-3 px-sm-0 my-3">
-          <%= f.password_field :password,  autocomplete: "current-password", :size => "40" %>
+    <div class="form-group row my-2">
+      <label for="password" class="col-sm-3 col-form-label">パスワード</label>
+      <div class="col-sm-9">
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "パスワード" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-9 offset-sm-3 d-flex justify-content-end">
+        <div class="text-center my-3">
+          <%= f.submit "ログイン", class: "btn btn-primary px-5" %>
         </div>
       </div>
-
-        <div class="row">
-          <div class="col-sm-3"></div>
-            <div class="col-sm-3 px-sm-0 my-3 ">
-              <div><%= f.submit "ログイン", class:"btn btn-primary px-5" %></div>
-            </div>
-    <% end %>
-        </div>
+    </div>
+  <% end %>
 
   <div class="row">
-    <div class="col-sm-3 ml-5 bg-light w-25">
-      <h5 class="font-weight-bold">会員登録がお済みでない方</h5>
+    <div class="col-sm-8 offset-sm-2 bg-light">
+      <h5 class="font-weight-bold text-center">会員登録がお済みでない方</h5>
     </div>
   </div>
 
   <div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-4 w-100 my-3">
-      <u class= "text-primary"><%= link_to "こちら", new_user_registration_path %></u>  から新規登録を行なってください
+    <div class="col-sm-8 offset-sm-2 my-3">
+      <p class="text-center">
+        <u class="text-primary"><%= link_to "こちら", new_user_registration_path %></u> から新規登録を行なってください
+      </p>
     </div>
   </div>
 </div>
-

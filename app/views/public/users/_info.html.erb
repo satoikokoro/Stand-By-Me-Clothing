@@ -1,19 +1,27 @@
-<table class='table'>
-  <tr><%= image_tag user.get_user_image, size: "200x200" %></tr>
-  <tr>
-	  <th>ニックネーム</th>
-	  <th><%= user.name %></th>
-  </tr>
-  <tr>
-	  <th>紹介文</th>
-	  <th><%= user.introduction %></th>
-  </tr>
-</table>
+<div class="table-responsive">
+  <table class='table'>
+    <tr>
+      <td colspan="2" class="text-center">
+        <%= image_tag user.get_user_image, size: "200x200" %>
+      </td>
+    </tr>
+    <tr>
+      <th>ネーム</th>
+      <td><%= user.name %></td>
+    </tr>
+    <tr>
+      <th>紹介文</th>
+      <td><%= user.introduction %></td>
+    </tr>
+  </table>
+</div>
 
 <div class='row'>
   <% if user == current_user %>
-    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
-      <i class="fa-solid fa-user-pen"></i></i>
-    <% end %>
+    <div class="col-md-6 offset-md-3">
+      <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
+        <i class="fa-solid fa-user-pen"></i>
+      <% end %>
+    </div>
   <% end %>
 </div>

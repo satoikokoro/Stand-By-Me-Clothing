@@ -1,24 +1,28 @@
-<table class='table'>
-  <thead>
-    <tr>
-      <th>画像</th>
-      <th>名前</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% users.each do |user| %>
-    <tr>
-      <td><%= link_to user_path(user.id) do %>
-        <%= image_tag user.get_user_image, size: "50x50" %>
-        <% end %>
-      </td>
-      <td><%= link_to user_path(user.id) do %>
-        <%= user.name %>
-        <% end %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>画像</th>
+        <th>ネーム</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to user_path(user.id) do %>
+            <%= image_tag user.get_user_image, size: "50x50" %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to user_path(user.id) do %>
+            <%= user.name %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
- <%= paginate users, class:"text-center" %>
+<%= paginate users, class: "text-center" %>

@@ -28,13 +28,6 @@
               <td><%= f.collection_select :storage_id, @storages, :id, :name, {include_blank: "--選択してください--"},class: "form-control" %></td>
             </tr>
             <tr>
-              <th><%= f.label "色" %></th>
-              <td><%= f.label "右から選択してください",class: "form-control" %></td>
-              <td><%= f.collection_check_boxes :color_ids, @colors, :id, :name do |color| %>
-                  <%= color.label { color.check_box + color.text } %>
-                  <% end %></td>
-            </tr>
-            <tr>
               <th><%= f.label "公開設定" %></th>
               <td><%= f.radio_button :privacy_status, Cloth.privacy_statuses.key(0) %>
                   <%= f.label :privacy_status, Cloth.privacy_statuses_i18n[:public], value: Cloth.privacy_statuses.key(0) %>
@@ -42,11 +35,25 @@
                   <%= f.label :privacy_status, Cloth.privacy_statuses_i18n[:private], value: Cloth.privacy_statuses.key(1) %>
               </td>
             </tr>
-            <tr>
-              <td colspan="2"><%= f.submit "衣類登録", class: "btn btn-success btn-block mt-3" %></td>
-            </tr>
           </tbody>
         </table>
+
+        <div class="col">
+          <%= f.label "色" %>
+          <%= f.collection_check_boxes :color_ids, Color.all, :id, :name do |color| %>
+              <div class="form-check">
+                <%= color.check_box class: "form-check-input" %>
+                <%= color.label class: "form-check-label" do %>
+                <%= color.text %>
+          <% end %>
+              </div>
+              <% end %>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-8 text-center">
+            <%= f.submit "衣類投稿", class: "btn btn-success btn-block" %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

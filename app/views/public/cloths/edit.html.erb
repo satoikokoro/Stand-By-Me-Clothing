@@ -1,56 +1,64 @@
-<div class= "container">
- <div class= "row">
-  <div class= "col">
-    <h3 style="width: 16%; text-align: center; margin: 15px; background: #000033; color:white">衣類編集</h3>
-    <div class="row justify-content-lg-center">
-     <%= form_with model: @cloth, url: cloth_path(@cloth.id), method: :patch do |f| %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h3 style="text-align: center; margin: 15px; background: #000033; color:white;">衣類編集</h3>
+      <%= form_with model: @cloth, url: cloth_path(@cloth.id), method: :patch do |f| %>
         <table class="table table-borderless mt-3">
-          <tbody>
-            <tr>
-              <td><%= f.label "衣類画像" %></td>
-              <td><%= f.file_field :image, :class => "form-control-file user_image" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label "衣類名" %></td>
-              <td><%= f.text_field :name, :class => "form-control name" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label "衣類説明" %></td>
-              <td><%= f.text_area :description, :class => "form-control description" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label "ジャンル" %></td>
-              <td><%= f.collection_select :genre_id, Genre.all, :id, :name, {include_blank: "--選択してください--"} %></td>
-            </tr>
-            <tr>
-              <td><%= f.label "収納先" %></td>
-              <td><%= f.collection_select :storage_id, @storages, :id, :name, {include_blank: "--選択してください--"} %></td>
-            </tr>
-            <tr>
-              <td><%= f.label "公開設定" %></td>
-              <td><%= f.radio_button :privacy_status, Cloth.privacy_statuses.key(0) %>
-                  <%= f.label :privacy_status, Cloth.privacy_statuses_i18n[:public], value: Cloth.privacy_statuses.key(0) %>
-                  <%= f.radio_button :privacy_status, Cloth.privacy_statuses.key(1) %>
-                  <%= f.label :privacy_status, Cloth.privacy_statuses_i18n[:private], value: Cloth.privacy_statuses.key(1) %>
-              </td>
-            </tr>
-           </tbody>
-          </table>
-            <div class= "row">
-              <div class= "col">
-              <%= f.label "カラー" %>
+              <tbody>
+                <tr>
+                  <td><%= f.label "画像" %></td>
+                  <td><%= f.file_field :image, class: "form-control-file" %></td>
+                </tr>
+                <tr>
+                  <td><%= f.label "名前" %></td>
+                  <td><%= f.text_field :name, class: "form-control name" %></td>
+                </tr>
+                <tr>
+                  <td><%= f.label "説明" %></td>
+                  <td><%= f.text_area :description, class: "form-control description" %></td>
+                </tr>
+                <tr>
+                  <td><%= f.label "ジャンル" %></td>
+                  <td><%= f.collection_select :genre_id, Genre.all, :id, :name, { include_blank: "--選択してください--" } %></td>
+                </tr>
+                <tr>
+                  <td><%= f.label "収納先" %></td>
+                  <td><%= f.collection_select :storage_id, @storages, :id, :name, { include_blank: "--選択してください--" } %></td>
+                </tr>
+                <tr>
+                  <td><%= f.label "公開設定" %></td>
+                  <td>
+                    <div class="form-check">
+                      <%= f.radio_button :privacy_status, Cloth.privacy_statuses.key(0), class: "form-check-input" %>
+                      <%= f.label :privacy_status, Cloth.privacy_statuses_i18n[:public], value: Cloth.privacy_statuses.key(0), class: "form-check-label" %>
+                    </div>
+                    <div class="form-check">
+                      <%= f.radio_button :privacy_status, Cloth.privacy_statuses.key(1), class: "form-check-input" %>
+                      <%= f.label :privacy_status, Cloth.privacy_statuses_i18n[:private], value: Cloth.privacy_statuses.key(1), class: "form-check-label" %>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="col">
+              <%= f.label "色" %>
               <%= f.collection_check_boxes :color_ids, Color.all, :id, :name do |color| %>
-                  <%= color.label { color.check_box + color.text } %>
+                <div class="form-check">
+                  <%= color.check_box class: "form-check-input" %>
+                  <%= color.label class: "form-check-label" do %>
+                    <%= color.text %>
                   <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-md-8 text-center">
+                <%= f.submit "変更を保存", class: "btn btn-success btn-block" %>
               </div>
             </div>
-        <div class="row">
-          <div class="mb-5 mx-auto">
-          <%= f.submit "変更を保存",class: "btn btn-success px-5" %>
           </div>
-        </div>
-      <% end %>
-     </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
