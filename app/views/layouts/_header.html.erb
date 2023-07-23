@@ -1,95 +1,66 @@
 <header class="border-bottom">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-white">
-    <div class="container">
-      <%= link_to root_path, :style => "width: 65%" do %>
-      <%= image_tag 'LOGO.png', width: '8%' %>
-      <% end %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-white fixed-top">
+      <div class="container">
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <%= image_tag 'LOGO.png', width: '80px' %>
+        <% end %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-
-       <% if admin_signed_in? %>
-
-         <div class ="row">
-          <li>
-            <%= link_to "衣類一覧", admin_cloths_path, class: 'nav-link text-dark' %>
-          </li>
-
-          <li>
-            <%= link_to "User一覧", admin_users_path, class: 'nav-link text-dark' %>
-          </li>
-
-          <li>
-            <%= link_to "Genre一覧", admin_genres_path, class: 'nav-link text-dark' %>
-          </li>
-
-          <li>
-            <%= link_to "Color一覧", admin_colors_path, class: 'nav-link text-dark' %>
-          </li>
-
-          <li>
-            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
-          </li>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <% if admin_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "衣類一覧", admin_cloths_path, class: 'btn btn-outline-danger nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "User", admin_users_path, class: 'btn btn-outline-danger nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Genre", admin_genres_path, class: 'btn btn-outline-danger nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Color", admin_colors_path, class: 'btn btn-outline-danger nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Log out", destroy_admin_session_path, method: :delete, class: 'btn btn-outline-danger nav-link text-dark' %>
+              </li>
+            <% elsif user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "My Closet", storages_path, class: 'btn btn-outline-primary nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Our Closet", cloths_path, class: 'btn btn-outline-primary nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Clothing Post", new_cloth_path, class: 'btn btn-outline-primary nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Storage Record", new_storage_path, class: 'btn btn-outline-primary nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Users", users_path, class: 'btn btn-outline-primary nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'btn btn-outline-primary nav-link text-dark' %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "About", about_path, class: 'btn btn-outline-secondary nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "会員登録", new_user_registration_path, class: 'btn btn-outline-secondary nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: 'btn btn-outline-secondary nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "お試しログイン", users_guest_sign_in_path, class: 'btn btn-outline-secondary nav-link text-dark', method: :post %>
+              </li>
+            <% end %>
+          </ul>
         </div>
-
-        <% elsif user_signed_in? %>
-
-
-        <div class="row">
-          <li>
-            <%= link_to "Myクローゼット", storages_path, class: 'nav-link text-dark' %>
-          </li>
-
-          <li>
-            <%=  link_to "Ourクローゼット", cloths_path , class: 'nav-link text-dark' %>
-          </li>
-
-          <li>
-            <%= link_to "衣類投稿", new_cloth_path, class: 'nav-link text-dark' %>
-          </li>
-
-          <li>
-            <%= link_to "収納先投稿", new_storage_path, class: 'nav-link text-dark' %>
-          </li>
-
-          <li>
-            <%= link_to "USERS", users_path, class: 'nav-link text-dark' %>
-          </li>
-
-          <li>
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
-          </li>
-        </div>
-
-        <% else %>
-
-        <div>
-          <div class="row">
-          <li>
-            <%= link_to "About", about_path, class: 'nav-link text-dark' %>
-          </li>
-
-          <li>
-            <%= link_to "会員登録", new_user_registration_path, class: 'nav-link text-dark' %>
-          </li>
-
-          <li>
-            <%= link_to "ログイン", new_user_session_path ,class: 'nav-link text-dark'  %>
-          </li>
-
-          <li>
-            <%= link_to "お試しログイン", users_guest_sign_in_path ,class: 'nav-link text-dark',  method: :post  %>
-          </li>
-          </div>
-        </div>
-
-          <% end %>
-
-        </ul>
       </div>
-    </div>
-  </nav>
-</header>
+    </nav>
+  </header>

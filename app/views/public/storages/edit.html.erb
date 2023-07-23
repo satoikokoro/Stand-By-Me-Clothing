@@ -1,16 +1,17 @@
 <div class="container">
   <div class="row">
-   <div class="col">
-    <%= form_with model: @storage, url: storage_path(@storage.id), method: :patch do |f| %>
-    <table class= "table">
-     <tr>
-      <th>収納名</th>
-      <td><%= f.file_field :image, accept: "image/*",:class => "form-control-Small-file in input example" %></td>
-       <td><%= f.text_field :name %></td>
-       <td><%= f.submit '変更を保存', class: "btn-success  mx-auto" %></td>
-     </tr>
-    </table>
-    <% end %>
-   </div>
+    <div class="col">
+     <h2>収納先編集</h2>
+      <%= form_with model: @storage, url: storage_path(@storage.id), method: :patch do |f| %>
+        <table class="table">
+          <tr>
+            <th>収納名</th>
+            <td><%= f.file_field :image, accept: "image/*", class: "form-control-file input example" %></td>
+            <td><%= f.text_field :name, class: "form-control" %></td>
+            <td><%= f.submit '変更を保存', class: "btn btn-success mx-auto" %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
   </div>
 </div>

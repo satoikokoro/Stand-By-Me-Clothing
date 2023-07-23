@@ -1,39 +1,46 @@
 <div class="container">
-  <div class='row'>
-    <div class='col-md-3'>
-     <%= form_with model: @storage, url: storages_path, method: :post, local: true do |f| %>
-      <table class='table-light'>
-        <tbody>
-         <tr>
-        <h4><i class="fa-solid fa-boxes-stacked"></i>[収納先を追加する]</h4>
-        <div class='p-3'><%= f.file_field :image, accept: "image/*",:class => "form-control-Small-file in input example" %></div>
-        <div class='p-3'><%= f.text_field :name, placeholder:"収納名" %></div>
-        <div class='p-3 text-center'><%= f.submit '新規登録', class: "btn btn-sm btn-success" %></div>
-         </tr>
-     <% end %>
-        </tbody>
-      </table>
-     </div>
-     <div class='col-md-8 offset-md-1'>
-        <table>
-         <thead>
-          <td></td>
-          <th class="col-5" style="width: 100%; margin: 15px; background: #eee">収納場所</th>
-         </thead>
-          <% @storages.each do |storage| %>
-         <tbody>
-          <tr class="table">
-            <td><%= image_tag storage.get_storage_image(0,0), style: "width:100px; height:100px;" %></td>
-            <td><%= storage.name %></td>
-           <td></td>
-           <td>
-             <%= link_to "編集する", edit_storage_path(storage.id), class: "btn-success btn-sm mx-auto" %>
-             <%= link_to "削除する", storage_path(storage.id),data: {confirm: "収納されている衣類も削除されますが、本当に削除しますか？"}, method: :delete, class: "btn-sm btn-danger" %>
-             </td>
-          </tr>
-          <% end %>
-         </tbody>
-        </table>
+  <div class="row">
+    <div class="col-md-6 p-5">
+      <%= form_with model: @storage, url: storages_path, method: :post, local: true do |f| %>
+        <div class="card bg-light p-3">
+          <div class="card-header text-center">
+            <h4><i class="fa-solid fa-boxes-stacked"></i> 収納先を追加する</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <%= f.file_field :image, accept: "image/*", class: "form-control-file input-example" %>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :name, placeholder: "収納名", class: "form-control" %>
+            </div>
+            <%= f.submit '新規登録', class: "btn btn-success btn-block" %>
+          </div>
+        </div>
+      <% end %>
     </div>
- </div>
+    <div class="col-md-6 p-5">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th class="col text-center" style="background: #eee">収納場所</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @storages.each do |storage| %>
+              <tr class="table">
+                <td><%= image_tag storage.get_storage_image(0,0), style: "width:100px; height:100px;" %></td>
+                <td><%= storage.name %></td>
+                <td><%= link_to "編集", edit_storage_path(storage.id), class: "btn btn-success btn-sm" %>
+                <%= link_to "削除", storage_path(storage.id), data: { confirm: "収納されている衣類も削除されますが、本当に削除しますか？" }, method: :delete, class: "btn btn-danger btn-sm" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,76 +1,77 @@
-<div class= "container">
-  <div class="container px-5 px-sm-0 pt-5">
+<div class="container">
+  <div class="container px-2 px-md-0 pt-5">
     <div class="row">
-      <div class="col-md-3">
-        <h3 class="p-md-2" style="width: 70%; text-align: center; margin: 15px; background: #7f141a; color:white">衣類詳細</h3>
-        <table class="table">
-          <tbody>
-            <tr>
-              <%= image_tag @cloth.get_cloth_image(0, 0), width: "200×200" %>
-            </tr>
-            <tr>
-             <th>
-            <%= link_to "削除する", admin_cloth_path, method: :delete, class: "btn btn-danger" %>
-            </th>
-          </tbody>
-        </table>
-
+      <div class="col-md-4">
+        <h3 class="p-2 text-center bg-info text-white">衣類詳細</h3>
+        <div class="text-center mt-4">
+          <%= image_tag @cloth.get_cloth_image(0, 0), width: "200", class: "img-fluid" %>
+        </div>
+        <div class="text-center mt-3">
+          <%= link_to "削除する", admin_cloth_path, method: :delete, class: "btn btn-danger" %>
+        </div>
       </div>
-      <div class="col-md-8 offset-md-1">
-        <table class="table table-hover table-inverse table-borderless" style="margin-top: 80px;">
-          <tbody>
+      <div class="col-md-8">
+        <div class="table-responsive mt-4">
+          <table class="table table-borderless">
+            <thead>
               <tr>
-              <h2>＜衣類情報＞</h2>
+                <th colspan="2" class="text-center"><h2>衣類情報</h2></th>
               </tr>
-            <tr>
-              <th>衣類名</th>
-              <td><%= @cloth.name %></td>
-            </tr>
-            <tr>
-              <th>衣類説明</th>
-              <td><%= @cloth.description %></td>
-            </tr>
-            <tr>
-              <th>ジャンル</th>
-              <td><%= @cloth.genre.name %></td>
-            </tr>
-            <tr>
-              <th>収納先</th>
-              <td><%= @cloth.storage.name %></td>
-            </tr>
-            <tr>
-              <th>カラー</th>
-              <td><% @cloth.colors.each do |color| %>
-                  <p><%= color.name %></p>
+            </thead>
+            <tbody>
+              <tr>
+                <th>衣類名</th>
+                <td><%= @cloth.name %></td>
+              </tr>
+              <tr>
+                <th>衣類説明</th>
+                <td><%= @cloth.description %></td>
+              </tr>
+              <tr>
+                <th>ジャンル</th>
+                <td><%= @cloth.genre.name %></td>
+              </tr>
+              <tr>
+                <th>収納先</th>
+                <td><%= @cloth.storage.name %></td>
+              </tr>
+              <tr>
+                <th>カラー</th>
+                <td>
+                  <% @cloth.colors.each do |color| %>
+                    <p><%= color.name %></p>
                   <% end %>
-              </td>
-            </tr>
+                </td>
+              </tr>
               <tr>
                 <th>投稿状況</th>
                 <td><%= @cloth.privacy_status_i18n %></td>
               </tr>
-          </tbody>
-        </table>
-        <h4>＜コメント一覧＞</h4>
-        <table>
-          <tbody>
+            </tbody>
+          </table>
+        </div>
+        <h4 class="mt-4">＜コメント一覧＞</h4>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
               <% @cloth.comments.each do |comment| %>
-              <tr>
-                <td>
-                  <%= link_to admin_user_path(comment.user) do %>
-                    <%= image_tag comment.user.get_user_image, size: "50x50" %><br>
-                    <%= comment.user.name %>
-                  <% end %>
-                </td>
-                <td><%= comment.comment %></td>
-                <td>
+                <tr>
+                  <td>
+                    <%= link_to admin_user_path(comment.user) do %>
+                      <%= image_tag comment.user.get_user_image, size: "50x50", class: "img-fluid rounded-circle" %><br>
+                      <%= comment.user.name %>
+                    <% end %>
+                  </td>
+                  <td><%= comment.comment %></td>
+                  <td>
                     <%= link_to "削除", admin_comment_path(comment), method: :delete, class: "btn-sm btn-outline-danger" %>
-                </td>
-              </tr>
+                  </td>
+                </tr>
               <% end %>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
+</div>

@@ -3,7 +3,7 @@ class Admin::HomesController < ApplicationController
   before_action :authenticate_admin!
 
   def top
-    @cloths = Cloth.page(params[:page]).per(12)
+    @cloths = Cloth.all
   end
 
 end

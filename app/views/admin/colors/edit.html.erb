@@ -1,15 +1,17 @@
 <div class="container">
   <div class="row">
-   <div class="col-8">
-    <%= form_with model: @color, url: admin_color_path(@color.id), method: :patch do |f| %>
-    <table class= "table">
-     <tr>
-      <td>カラー名</td>
-       <td><%= f.text_field :name %></td>
-       <td><%= f.submit '変更を保存', class: "btn-success  mx-auto" %></td>
-     </tr>
-    </table>
-    <% end %>
-   </div>
+    <div class="col-md-8 p-5">
+      <%= form_with model: @color, url: admin_color_path(@color.id), method: :patch do |f| %>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td class="col-6 col-md-3">カラー名</td>
+              <td class="col-6 col-md-3"><%= f.text_field :name, class: "form-control" %></td>
+              <td class="col-12 col-md-6"><%= f.submit '変更を保存', class: "btn btn-success mx-auto d-block" %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
   </div>
 </div>

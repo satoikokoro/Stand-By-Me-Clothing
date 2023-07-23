@@ -5,6 +5,8 @@ class Admin::ClothsController < ApplicationController
   def index
      #ページ分の決められた数のデータを新しい順に全て取得
     @cloths = Cloth.page(params[:page]).per(12)
+    @cloth_all = Cloth.all
+
   end
 
   def show

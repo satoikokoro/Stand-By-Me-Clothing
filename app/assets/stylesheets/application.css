@@ -17,3 +17,31 @@
 .field_with_errors {
   display: contents;
 }
+
+
+  /* ヘッダーのレイアウト調整　*/
+
+     body {
+      padding-top: 110px; /* ヘッダーの高さ分の余白を追加 */
+    }
+    .navbar {
+      min-height: 60px; /* ヘッダーの高さを60pxに設定 */
+    }
+    .navbar-brand {
+      max-width: 65%; /* ロゴの最大幅を65%に設定 */
+    }
+    .navbar-toggler {
+      border: none; /* ハンバーガーメニューの境界線を削除 */
+    }
+    .navbar-nav .nav-link {
+      padding: 0.5rem 1rem; /* メニューリンクの余白を微調整 */
+    }
+    .navbar-nav .nav-item {
+      margin-right: 10px; /* メニュー項目の右マージンを追加 */
+    }
+    .navbar-nav .nav-item:last-child {
+      margin-right: 0; /* 最後のメニュー項目の右マージンを削除 */
+    }
+    .navbar-nav .nav-link:hover {
+      color: #007bff; /* メニューリンクにホバーカラーを追加 */
+    }

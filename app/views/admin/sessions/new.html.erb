@@ -1,39 +1,36 @@
 <div class="container">
-  <div class="row">
-    <div class="col-5 ml-2">
-      <div>
-        <h4 style="width: 50%; text-align: center; margin: 15px; background: #000000; color:white">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="text-center">
+        <h4 style="width: 50%; text-align: center; margin: 15px; background: #330000; color:white">
           管理者ログイン</h4>
       </div>
     </div>
   </div>
 
-
-  <%= form_with model: @admin, url:admin_session_path do |f| %>
-
-  <div class="row my-2">
-    <div class= "col-sm-2 px-sm-0 offset-sm-1">
-      <%= f.label :メールアドレス %><br />
+  <%= form_with model: @admin, url: admin_session_path do |f| %>
+    <div class="row my-2">
+      <div class="col-md-2 col-sm-4">
+        <%= f.label :メールアドレス %><br />
+      </div>
+      <div class="col-md-6 col-sm-8">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "sample@admin" %>
+      </div>
     </div>
-    <div class="col-sm-3 px-sm-0">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email",:size => "40",placeholder: "sample@admin" %>
-    </div>
-  </div>
 
-  <div class="row my-2">
-    <div class="col-sm-2 px-sm-0 offset-sm-1 my-3">
-      <%= f.label :パスワード %>
+    <div class="row my-2">
+      <div class="col-md-2 col-sm-4 my-3">
+        <%= f.label :パスワード %>
+      </div>
+      <div class="col-md-6 col-sm-8 my-3">
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      </div>
     </div>
-    <div class="col-sm-3 px-sm-0 my-3">
-      <%= f.password_field :password,  autocomplete: "current-password", :size => "40" %>
-    </div>
-  </div>
 
-    <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-3 px-sm-0 my-3 ">
-      <div><%= f.submit "ログイン", class:"btn btn-primary px-5" %></div>
+    <div class="row justify-content-center">
+      <div class="col-md-4 col-sm-6 my-3">
+        <div><%= f.submit "ログイン", class: "btn btn-primary btn-block" %></div>
+      </div>
     </div>
   <% end %>
-  </div>
 </div>

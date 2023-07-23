@@ -1,34 +1,42 @@
 <div class="container">
- <div class="pt-5">
-   <%= form_with model: @color, url: admin_colors_path, method: :post, local: true do |f| %>
-  <table class="table table-borderless">
-   <tbody class="row justify-content-start">
-    <tr class="pt-4">
-     <th>カラー名</th>
-     <td><%= f.text_field :name, placeholder:"カラー名" %></td>
-     <td><%= f.submit '新規登録', class: "btn btn-sm btn-info" %></td>
-    </tr>
-   </tbody>
-   <% end %>
-  </table>
- </div>
-</div>
-<div class="container">
- <div class="pt-3">
-  <table>
-   <thead>
-    <td></td>
-    <th class="col-5" style="width: 100%; text-align: center; margin: 15px; background: #eee">カラー</th></th>
-   </thead>
-    <% @colors.each do |color| %>
-   <tbody>
-    <tr class="table">
-     <td><%= color.name %></td>
-     <td></td>
-     <td><%= link_to "編集する", edit_admin_color_path(color.id), class: "btn-outline-primary btn-sm mx-auto" %></td>
-    </tr>
+  <div class="pt-5">
+    <%= form_with model: @color, url: admin_colors_path, method: :post, local: true do |f| %>
+      <div class="table-responsive">
+        <table class="table table-borderless">
+          <tbody class="row justify-content-start">
+            <tr class="pt-4">
+              <th class="col-12 col-md-10 p-3">カラー名</th>
+              <td class="col-8 col-md-1"><%= f.text_field :name, placeholder: "カラー名" %></td>
+              <td class="col-4 col-md-1"><%= f.submit '新規登録', class: "btn btn-sm btn-info" %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     <% end %>
-   </tbody>
-  </table>
- </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="pt-3">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="col-12 col-md-4" style="text-align: center; background: #eee">カラー</th>
+            <th class="col-12 col-md-4"></th>
+            <th class="col-12 col-md-4"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @colors.each do |color| %>
+            <tr>
+              <td class="col-12 col-md-4"><%= color.name %></td>
+              <td class="col-6 col-md-4"><%= link_to "編集する", edit_admin_color_path(color.id), class: "btn btn-outline-primary btn-sm mx-auto" %></td>
+              <td class="col-6 col-md-4"></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
