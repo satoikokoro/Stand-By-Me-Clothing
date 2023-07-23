@@ -2,7 +2,7 @@ class Storage < ApplicationRecord
   belongs_to :user
   has_many :cloths, dependent: :destroy
 
-  validates :name, uniqueness: true, presence:true, length:{maximum:20}
+  validates :name, presence:true, length:{maximum:20}
 
   has_one_attached :image
 
