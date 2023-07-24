@@ -28,6 +28,8 @@ class Public::UsersController < ApplicationController
 
   def resign
     current_user.update(is_deleted: true)
+    current_user.cloths.destroy_all
+    current_user.storages.destroy_all
     reset_session
     flash[:notice] = "またのご利用をお待ちしております。"
     redirect_to root_path

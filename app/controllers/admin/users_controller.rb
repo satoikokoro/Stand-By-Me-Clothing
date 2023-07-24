@@ -17,6 +17,8 @@ class Admin::UsersController < ApplicationController
   def update
     @user =User.find(params[:id])
     if @user.update(user_params)
+      @user.cloths.destroy_all
+      @user.storages.destroy_all
       redirect_to admin_user_path
     else
       render 'edit'
@@ -27,6 +29,6 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:introduction, :user_status)
+    params.require(:user).permit(:introduction, :is_deleted)
   end
 end
