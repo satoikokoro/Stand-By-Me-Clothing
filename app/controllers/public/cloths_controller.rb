@@ -50,7 +50,6 @@ class Public::ClothsController < ApplicationController
 
 
   def index
-    @cloth_all = Cloth.all
     @cloths = Cloth.where(privacy_status: :public).page(params[:page]).per(12) #ページ分の決められた数のデータを新しい順に全て取得
     @genres = Genre.all
   end
@@ -101,7 +100,7 @@ class Public::ClothsController < ApplicationController
 
   def genre_search
     @genre = Genre.find(params[:id])
-    @cloths = @genre.cloths.page(params[:page]).per(12)
+    @cloths = @genre.cloths.where(privacy_status: :public).page(params[:page]).per(12)
     @genres = Genre.all
   end
 

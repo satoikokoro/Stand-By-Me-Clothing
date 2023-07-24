@@ -6,11 +6,9 @@ class Public::SearchesController < ApplicationController
 		@content = params[:content]
 		@method = params[:method]
 		if @model == 'user'
-			@records = User.search_for(@content, @method).page(params[:page]).per(15)
+			@records = User.where(is_deleted: :false).search_for(@content, @method).page(params[:page]).per(15)
 		else
-			@records = Cloth.search_for(@content, @method).page(params[:page]).per(15)
+			@records = Cloth.where(privacy_status: :public).search_for(@content, @method).page(params[:page]).per(15)
 		end
   end
-
-
 end

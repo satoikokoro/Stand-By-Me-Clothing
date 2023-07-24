@@ -9,7 +9,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @cloths = @user.cloths.page(params[:page]).per(12)
+    @cloths = @user.cloths.where(privacy_status: :public).page(params[:page]).per(12)
   end
 
   def edit

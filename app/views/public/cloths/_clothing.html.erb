@@ -1,4 +1,4 @@
-<span class="ml-3">(全<%= cloths.where(privacy_status: :public).count %>件)</span>
+<span class="ml-3">(表示<%= cloths.where(privacy_status: :public).count %>件)</span>
 <div class="container mt-3 mb-3">
   <div class="row justify-content-center">
       <% cloths.each do |cloth| %>
