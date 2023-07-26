@@ -24,7 +24,8 @@
  - 新しいコーディネートに挑戦したい時
 
 ## 設計書
-<...>
+ - ER図:https://drive.google.com/file/d/1uY6oXb4-yhC4ANaM75IeM8In70AY8r5r/view?usp=sharing
+ - テーブル定義書:https://docs.google.com/spreadsheets/d/1wdanDESxPhfzKcOesVng1077ZWcUomiI/edit?usp=sharing&ouid=106239587443638468993&rtpof=true&sd=true
 
 ## 開発環境
 - OS：Linux(CentOS)
