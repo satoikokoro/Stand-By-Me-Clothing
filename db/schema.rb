@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2023_07_21_161929) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "privacy_status"
-    t.integer "#<ActiveRecord::ConnectionAdapters::SQLite3::TableDefinition:0x00007fad892be7b8>"
+    t.integer "#<ActiveRecord::ConnectionAdapters::SQLite3::TableDefinition:0x00007fad892be7b8>" #SQLbusy解除のカラム
   end
 
   create_table "color_properties", force: :cascade do |t|
