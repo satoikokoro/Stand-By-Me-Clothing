@@ -9,8 +9,12 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :storages, dependent: :destroy
 
-  has_one_attached :image
+  #ニックネーム,プロフィールの文字制限
+  validates :name, presence:true, length:{maximum:20}
+  validates :introduction, presence:true, length:{maximum:200}
 
+  #Activestorage メソット
+  has_one_attached :image
   def get_user_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/user_no_image.jpg')
@@ -18,7 +22,6 @@ class User < ApplicationRecord
     end
     image
   end
-
 
   #ユーザー検索の条件分岐
   def self.search_for(content, method)
@@ -32,7 +35,6 @@ class User < ApplicationRecord
       User.where('name LIKE ?', '%' + content + '%')
     end
   end
-
 
 #ゲストログインメソット定義
 

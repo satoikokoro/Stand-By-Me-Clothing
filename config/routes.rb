@@ -32,7 +32,6 @@ Rails.application.routes.draw do
     patch 'users/resign' => 'users#resign'
 
    resources :users, only: [:index,:show,:edit,:update,]
-
    resources :storages
 
    get "search" => "searches#search"
@@ -44,17 +43,13 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
-  root to:"homes#top"
-
-  resources :users, only: [:index,:show,:edit,:update]
-
-  resources :genres, only: [:index,:create,:edit,:update]
-
-  resources :colors, only: [:index,:create,:edit,:update]
-
-  resources :cloths,only: [:index, :show, :destroy]
-
-  resources :comments, only: [:destroy]
+    root to:"homes#top"
+    resources :users, only: [:index,:show,:edit,:update]
+    resources :genres, only: [:index,:create,:edit,:update]
+    resources :colors, only: [:index,:create,:edit,:update]
+    resources :cloths,only: [:index, :show, :destroy]
+    resources :comments, only: [:destroy]
 
   end
+
 end

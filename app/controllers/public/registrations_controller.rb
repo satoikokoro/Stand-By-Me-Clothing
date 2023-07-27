@@ -5,14 +5,18 @@ class Public::RegistrationsController < Devise::RegistrationsController
    before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+
+def create
+    super do |resource|
+      if resource.persisted?
+        flash[:success] = "会員登録が成功しました！ようこそ、#{resource.name}さん！"
+      else
+        flash[:error] = "入力内容をご確認いただき、もう一度試してください。"
+      end
+    end
+end
 
   # POST /resource
-  # def create
-  #   super
-  # end
 
   # GET /resource/edit
   # def edit
@@ -38,7 +42,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+   private
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_up_params
