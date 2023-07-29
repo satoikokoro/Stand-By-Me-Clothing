@@ -10,11 +10,12 @@ class Admin::ColorsController < ApplicationController
   def create
     @color = Color.new(color_params)
     if @color.save
+      flash[:notice] = "登録に成功しました。"
       redirect_to admin_colors_path
     else
       @colors = Color.all
+      flash.now[:alert] = "登録に失敗しました。"
       render 'index'
-      #フラッシュメーセージ検討
     end
   end
 

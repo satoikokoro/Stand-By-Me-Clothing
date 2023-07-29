@@ -27,9 +27,8 @@ before_action :ensure_correct_user, only: [:edit, :update, :destroy,]
       redirect_to new_storage_path
     else
       flash.now[:alert] = "登録に失敗しました。"
-      @storages = Storage.all
+      @storages = Storage.where(user_id: current_user).all
       render 'new'
-      #フラッシュメッセージ検討
     end
   end
 
