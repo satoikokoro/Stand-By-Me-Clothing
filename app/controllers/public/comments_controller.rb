@@ -10,8 +10,15 @@ class Public::CommentsController < ApplicationController
 
   def destroy
     @cloth = Cloth.find(params[:cloth_id])
-    @comment = Comment.new
-    Comment.find_by(id: params[:id], cloth_id: params[:cloth_id]).destroy
+    @comment = Comment.find_by(id: params[:id], cloth_id: params[:cloth_id])
+
+    if @comment.user == current_user
+      @comment.destroy
+      flash[:notice] = "コメントが削除されました。"
+    else
+      flash[:alert] = "このコメントを削除する権限がありません。"
+    end
+    redirect_to cloth_path(@cloth)
   end
 
   private
