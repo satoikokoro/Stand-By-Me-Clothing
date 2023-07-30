@@ -4,13 +4,15 @@
       <%= form_with model: @user, url: admin_user_path(@user), method: :patch do |f| %>
         <div class="card border-0 shadow-sm">
           <div class="card-body">
-            <h3 class="text-center mb-4">＜管理者会員設定画面＞</h3>
-
+            <h3 class="text-center mb-4">管理者会員設定画面</h3>
             <div class="form-group">
-              <%= f.label "停止理由追記" %>
+              <%= f.label "名前" %>
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label "プロフィール" %>
               <%= f.text_area :introduction, class: "form-control description" %>
             </div>
-
             <div class="form-group">
               <%= f.label "User Status" %><br>
               <div class="form-check form-check-inline">
@@ -22,9 +24,9 @@
                 <%= f.label :is_deleted, "停止", value: :true, class: "form-check-label" %>
               </div>
             </div>
-
             <div class="text-center">
-              <%= f.submit "確定", class: "btn btn-danger px-5 mt-3" %>
+              <%= f.submit "確定", class: "btn btn-danger px-5 mt-3",
+              data: { confirm: "本当に更新しますか？停止するとユーザーの情報は削除されます。"} %>
             </div>
           </div>
         </div>

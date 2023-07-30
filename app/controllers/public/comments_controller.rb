@@ -4,8 +4,14 @@ class Public::CommentsController < ApplicationController
     @cloth = Cloth.find(params[:cloth_id])
     cloth_comment = current_user.comments.new(comment_params)
     cloth_comment.cloth_id = @cloth.id
-    cloth_comment.save
-    @comment = Comment.new
+
+    if cloth_comment.save
+      flash[:notice] = "コメントが投稿されました。"
+      @comment = Comment.new
+    else
+      flash[:aleert] = "コメントの投稿に失敗しました。"
+    end
+    redirect_to cloth_path(@cloth)
   end
 
   def destroy

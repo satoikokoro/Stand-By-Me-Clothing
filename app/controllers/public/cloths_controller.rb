@@ -11,7 +11,7 @@ class Public::ClothsController < ApplicationController
   end
 
   def create
-    @genres =Genre.all
+    @genres = Genre.all
     @storages = Storage.all
     @colors = Color.all
     @cloth = Cloth.new(cloth_params)
@@ -50,12 +50,16 @@ class Public::ClothsController < ApplicationController
 
 
   def index
-    @cloths = Cloth.where(privacy_status: :public).page(params[:page]).per(12) #ページ分の決められた数のデータを新しい順に全て取得
+  #ページ分の決められた数のデータを新しい順に全て取得
+    @cloths = Cloth.where(privacy_status: :public).page(params[:page]).per(12)
     @genres = Genre.all
   end
 
   def show
     @cloth = Cloth.find(params[:id])
+     unless @cloth.user == current_user
+       redirect_to cloths_path
+     end
     @comment = Comment.new
   end
 
