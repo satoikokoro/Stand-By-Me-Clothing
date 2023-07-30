@@ -13,6 +13,15 @@ class User < ApplicationRecord
   validates :name, presence:true, length:{maximum:20}
   validates :introduction, presence:true, length:{maximum:200}
 
+  #activeであればtrueを返すdeviseメソット
+   def active_for_authentication?
+     super && !is_deleted?
+   end
+  #条件演算子でメッセージを選択
+  def inactive_message
+    is_deleted? ? :account_inactive : super
+  end
+
   #Activestorage メソット
   has_one_attached :image
   def get_user_image

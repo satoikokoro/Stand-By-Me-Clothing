@@ -16,19 +16,24 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user =User.find(params[:id])
+    is_deleted_params = user_params[:is_deleted]
+
     if @user.update(user_params)
-      @user.cloths.destroy_all
-      @user.storages.destroy_all
+      if is_deleted_params == "true"
+        @user.cloths.destroy_all
+        @user.storages.destroy_all
+      end
       redirect_to admin_user_path
     else
       render 'edit'
     end
+
   end
 
 
   private
 
   def user_params
-    params.require(:user).permit(:introduction, :is_deleted)
+    params.require(:user).permit(:name, :introduction, :is_deleted)
   end
 end
