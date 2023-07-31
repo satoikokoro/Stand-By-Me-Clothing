@@ -57,10 +57,12 @@ class Public::ClothsController < ApplicationController
 
   def show
     @cloth = Cloth.find(params[:id])
-     unless @cloth.user == current_user
-       redirect_to cloths_path
-     end
-    @comment = Comment.new
+
+    if @cloth.user == current_user
+        @comment = Comment.new
+    else @cloth.privacy_status == :private
+      redirect_to cloths_path, alert: "この衣類は非公開です。"
+    end
   end
 
   def edit
