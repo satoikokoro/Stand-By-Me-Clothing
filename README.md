@@ -36,5 +36,5 @@
 - IDE：Cloud9
 
 ## 使用素材
-- https://www.ac-illust.com>イラストAC
-- https://www.silhouette-ac.com/>シルエットAC
+- イラストAC:https://www.ac-illust.com/
+- シルエットAC:https://www.silhouette-ac.com/
